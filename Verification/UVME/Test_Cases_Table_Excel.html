@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AXI NOC Test Cases Table - Excel Compatible</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .high { background-color: #ffebee; }
+        .medium { background-color: #fff3e0; }
+        .low { background-color: #e8f5e8; }
+        .not-started { background-color: #f5f5f5; }
+        .in-progress { background-color: #fff8e1; }
+        .completed { background-color: #e8f5e8; }
+        .failed { background-color: #ffebee; }
+        .notes { max-width: 200px; }
+        .signals { max-width: 300px; font-size: 10px; }
+    </style>
+</head>
+<body>
+    <h1>AXI NOC Test Cases Table - Excel Compatible</h1>
+    <p><strong>Instructions:</strong> Select the entire table below, copy it, and paste it into Excel. The table includes all 32 test cases with status tracking.</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Test Case ID</th>
+                <th>Test Case Name</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Category</th>
+                <th>Signals Involved</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Expected Result</th>
+                <th>Actual Result</th>
+                <th>Date Started</th>
+                <th>Date Completed</th>
+                <th>Tester</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Basic Functionality Tests -->
+            <tr class="high">
+                <td>TC_BASIC_001</td>
+                <td>Single Write Transaction</td>
+                <td>Basic write transaction from M0 to S0</td>
+                <td>High</td>
+                <td>Basic Functionality</td>
+                <td class="signals">m0_aw*, m0_w*, m0_b*, s0_aw*, s0_w*, s0_b*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Write transaction completes successfully with OKAY response</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_BASIC_002</td>
+                <td>Single Read Transaction</td>
+                <td>Basic read transaction from M0 to S0</td>
+                <td>High</td>
+                <td>Basic Functionality</td>
+                <td class="signals">m0_ar*, m0_r*, s0_ar*, s0_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Read transaction completes successfully with correct data</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_BASIC_003</td>
+                <td>Burst Write (INCR)</td>
+                <td>INCR burst write with length 1-15</td>
+                <td>High</td>
+                <td>Basic Functionality</td>
+                <td class="signals">m0_aw*, m0_w*, m0_b*, s0_aw*, s0_w*, s0_b*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Burst write completes with proper handshaking and WLAST</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_BASIC_004</td>
+                <td>Burst Read (INCR)</td>
+                <td>INCR burst read with length 1-15</td>
+                <td>High</td>
+                <td>Basic Functionality</td>
+                <td class="signals">m0_ar*, m0_r*, s0_ar*, s0_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Burst read completes with proper handshaking and RLAST</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Access Control Tests -->
+            <tr class="high">
+                <td>TC_ACCESS_001</td>
+                <td>M0 Full Access</td>
+                <td>M0 accessing all slaves (S0-S6)</td>
+                <td>High</td>
+                <td>Access Control</td>
+                <td class="signals">m0_aw*, m0_w*, m0_b*, m0_ar*, m0_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>M0 successfully accesses all slaves</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ACCESS_002</td>
+                <td>M1 Restricted Access</td>
+                <td>M1 accessing only S1, S3, S4</td>
+                <td>High</td>
+                <td>Access Control</td>
+                <td class="signals">m1_aw*, m1_w*, m1_b*, m1_ar*, m1_r*, s1_aw*, s1_w*, s1_b*, s1_ar*, s1_r*, s3_aw*, s3_w*, s3_b*, s3_ar*, s3_r*, s4_aw*, s4_w*, s4_b*, s4_ar*, s4_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>M1 successfully accesses only allowed slaves</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ACCESS_003</td>
+                <td>M2 Restricted Access</td>
+                <td>M2 accessing only S2, S4, S5</td>
+                <td>High</td>
+                <td>Access Control</td>
+                <td class="signals">m2_aw*, m2_w*, m2_b*, m2_ar*, m2_r*, s2_aw*, s2_w*, s2_b*, s2_ar*, s2_r*, s4_aw*, s4_w*, s4_b*, s4_ar*, s4_r*, s5_aw*, s5_w*, s5_b*, s5_ar*, s5_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>M2 successfully accesses only allowed slaves</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ACCESS_004</td>
+                <td>M3 Restricted Access</td>
+                <td>M3 accessing only S0, S2, S6</td>
+                <td>High</td>
+                <td>Access Control</td>
+                <td class="signals">m3_aw*, m3_w*, m3_b*, m3_ar*, m3_r*, s0_aw*, s0_w*, s0_b*, s0_ar*, s0_r*, s2_aw*, s2_w*, s2_b*, s2_ar*, s2_r*, s6_aw*, s6_w*, s6_b*, s6_ar*, s6_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>M3 successfully accesses only allowed slaves</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ACCESS_005</td>
+                <td>M1 Access Denied</td>
+                <td>M1 attempting to access S0 (should fail)</td>
+                <td>High</td>
+                <td>Access Control</td>
+                <td class="signals">m1_aw*, m1_w*, m1_b*, m1_ar*, m1_r*, s0_aw*, s0_w*, s0_b*, s0_ar*, s0_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>M1 access to S0 is denied with appropriate error</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Address Decoding Tests -->
+            <tr class="high">
+                <td>TC_ADDR_001</td>
+                <td>S0 Address Range</td>
+                <td>Transactions to 0x0000_0000-0x0000_0FFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s0_aw*, s0_w*, s0_b*, s0_ar*, s0_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S0 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ADDR_002</td>
+                <td>S1 Address Range</td>
+                <td>Transactions to 0x0000_2000-0x0000_2FFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s1_aw*, s1_w*, s1_b*, s1_ar*, s1_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S1 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ADDR_003</td>
+                <td>S2 Address Range</td>
+                <td>Transactions to 0x0000_4000-0x0000_4FFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s2_aw*, s2_w*, s2_b*, s2_ar*, s2_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S2 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ADDR_004</td>
+                <td>S3 Address Range</td>
+                <td>Transactions to 0x0000_6000-0x0000_6FFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s3_aw*, s3_w*, s3_b*, s3_ar*, s3_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S3 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ADDR_005</td>
+                <td>S4 Address Range</td>
+                <td>Transactions to 0x0000_8000-0x0000_8FFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s4_aw*, s4_w*, s4_b*, s4_ar*, s4_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S4 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ADDR_006</td>
+                <td>S5 Address Range</td>
+                <td>Transactions to 0x0000_A000-0x0000_AFFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s5_aw*, s5_w*, s5_b*, s5_ar*, s5_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S5 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_ADDR_007</td>
+                <td>S6 Address Range</td>
+                <td>Transactions to 0x0000_C000-0x0000_CFFF</td>
+                <td>High</td>
+                <td>Address Decoding</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s6_aw*, s6_w*, s6_b*, s6_ar*, s6_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions to S6 address range route correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Concurrent Access Tests -->
+            <tr class="medium">
+                <td>TC_CONC_001</td>
+                <td>M0+M1 Concurrent</td>
+                <td>M0 and M1 accessing different slaves simultaneously</td>
+                <td>Medium</td>
+                <td>Concurrent Access</td>
+                <td class="signals">m0_aw*, m0_w*, m0_b*, m0_ar*, m0_r*, m1_aw*, m1_w*, m1_b*, m1_ar*, m1_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Both transactions complete successfully without interference</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="medium">
+                <td>TC_CONC_002</td>
+                <td>All Masters Concurrent</td>
+                <td>All masters accessing different slaves simultaneously</td>
+                <td>Medium</td>
+                <td>Concurrent Access</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>All transactions complete successfully with proper arbitration</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="medium">
+                <td>TC_CONC_003</td>
+                <td>Same Slave Access</td>
+                <td>Multiple masters accessing the same slave (arbitration)</td>
+                <td>Medium</td>
+                <td>Concurrent Access</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Arbitration works correctly with fair access</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Protocol Compliance Tests -->
+            <tr class="high">
+                <td>TC_PROT_001</td>
+                <td>Handshake Timing</td>
+                <td>Valid/Ready handshake timing compliance</td>
+                <td>High</td>
+                <td>Protocol Compliance</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>All handshakes comply with AXI timing requirements</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_PROT_002</td>
+                <td>ID Ordering</td>
+                <td>Transaction ID ordering compliance</td>
+                <td>High</td>
+                <td>Protocol Compliance</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Transactions with same ID maintain proper ordering</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_PROT_003</td>
+                <td>Burst Continuity</td>
+                <td>Burst transfer continuity compliance</td>
+                <td>High</td>
+                <td>Protocol Compliance</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Burst transfers maintain continuity without gaps</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_PROT_004</td>
+                <td>Response Codes</td>
+                <td>All response code combinations</td>
+                <td>High</td>
+                <td>Protocol Compliance</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>All AXI response codes are properly handled</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Error Scenarios Tests -->
+            <tr class="medium">
+                <td>TC_ERR_001</td>
+                <td>Slave Error Response</td>
+                <td>Slave returning SLVERR response</td>
+                <td>Medium</td>
+                <td>Error Scenarios</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>SLVERR responses are properly propagated to masters</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="medium">
+                <td>TC_ERR_002</td>
+                <td>Decode Error</td>
+                <td>Access to unmapped address (DECERR)</td>
+                <td>Medium</td>
+                <td>Error Scenarios</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>DECERR responses for unmapped addresses</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="medium">
+                <td>TC_ERR_003</td>
+                <td>Timeout Scenarios</td>
+                <td>Transaction timeout handling</td>
+                <td>Medium</td>
+                <td>Error Scenarios</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Timeout mechanisms work correctly</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Performance Tests -->
+            <tr class="low">
+                <td>TC_PERF_001</td>
+                <td>Maximum Throughput</td>
+                <td>Maximum transactions per cycle</td>
+                <td>Low</td>
+                <td>Performance</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>System achieves maximum theoretical throughput</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="low">
+                <td>TC_PERF_002</td>
+                <td>Latency Measurement</td>
+                <td>End-to-end transaction latency</td>
+                <td>Low</td>
+                <td>Performance</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>Latency measurements are within specifications</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            
+            <!-- Reset/Initialization Tests -->
+            <tr class="high">
+                <td>TC_RST_001</td>
+                <td>Power-on Reset</td>
+                <td>System behavior after power-on reset</td>
+                <td>High</td>
+                <td>Reset/Initialization</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>System initializes correctly after power-on reset</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="high">
+                <td>TC_RST_002</td>
+                <td>Soft Reset</td>
+                <td>System behavior after soft reset</td>
+                <td>High</td>
+                <td>Reset/Initialization</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>System resets correctly after soft reset assertion</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="medium">
+                <td>TC_RST_003</td>
+                <td>Reset During Transaction</td>
+                <td>Reset assertion during active transaction</td>
+                <td>Medium</td>
+                <td>Reset/Initialization</td>
+                <td class="signals">m[0-3]_aw*, m[0-3]_w*, m[0-3]_b*, m[0-3]_ar*, m[0-3]_r*, s[0-6]_aw*, s[0-6]_w*, s[0-6]_b*, s[0-6]_ar*, s[0-6]_r*, clk, rstn</td>
+                <td class="not-started">Not Started</td>
+                <td class="notes"></td>
+                <td>System handles reset during active transactions gracefully</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Status Legend</h2>
+    <ul>
+        <li><strong>Not Started</strong>: Test case has not been executed yet</li>
+        <li><strong>In Progress</strong>: Test case is currently being executed</li>
+        <li><strong>Completed</strong>: Test case has been executed successfully</li>
+        <li><strong>Failed</strong>: Test case failed during execution</li>
+        <li><strong>Blocked</strong>: Test case is blocked due to dependencies</li>
+    </ul>
+    
+    <h2>Priority Legend</h2>
+    <ul>
+        <li><strong>High</strong>: Critical functionality, must pass for release</li>
+        <li><strong>Medium</strong>: Important functionality, should pass for release</li>
+        <li><strong>Low</strong>: Nice-to-have functionality, can be deferred</li>
+    </ul>
+    
+    <h2>Usage Instructions</h2>
+    <ol>
+        <li>Select the entire table above (Ctrl+A)</li>
+        <li>Copy the selection (Ctrl+C)</li>
+        <li>Open Excel and create a new workbook</li>
+        <li>Paste the table (Ctrl+V)</li>
+        <li>The table will be automatically formatted in Excel</li>
+        <li>Use the Status column to track progress</li>
+        <li>Add dates and tester information as tests are executed</li>
+    </ol>
+</body>
+</html>
