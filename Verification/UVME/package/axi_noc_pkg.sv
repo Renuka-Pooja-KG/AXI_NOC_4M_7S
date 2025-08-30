@@ -8,7 +8,21 @@ package axi_noc_pkg;
   `include "uvm_macros.svh"
   
   // Import common AXI types package
-  // import axi_common_types_pkg::*;
+  import axi_common_types_pkg::*;
+
+  // ===== INTERFACES =====
+  `include "./interfaces/M0_interface.sv"
+  `include "./interfaces/M1_interface.sv"
+  `include "./interfaces/M2_interface.sv"
+  `include "./interfaces/M3_interface.sv"
+  `include "./interfaces/S0_interface.sv"
+  `include "./interfaces/S1_interface.sv"
+  `include "./interfaces/S2_interface.sv"
+  `include "./interfaces/S3_interface.sv"
+  `include "./interfaces/S4_interface.sv"
+  `include "./interfaces/S5_interface.sv"
+  `include "./interfaces/S6_interface.sv"
+
   // ===== MASTER 0 (M0) AGENT COMPONENTS =====
   `include "./agents/M0_agent/M0_seq_item.sv"
   `include "./agents/M0_agent/M0_sequencer.sv"
