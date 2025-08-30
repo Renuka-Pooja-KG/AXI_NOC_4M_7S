@@ -118,6 +118,7 @@ Each slave interface contains identical signal structure with different prefixes
 │  ┌─────────────────────────────────────────────────────────────┐ │
 │  │                Virtual Sequencer                           │ │
 │  │           (Coordinates Master Sequences)                   │ │
+│  │           (Coordinates Slave Sequences)                    │ │
 │  └─────────────────────────────────────────────────────────────┘ │
 │                           │                                     │
 │  ┌─────────────────────────────────────────────────────────────┐ │
@@ -133,10 +134,14 @@ Each slave interface contains identical signal structure with different prefixes
 │  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐     │
 │  │ S0  │ │ S1  │ │ S2  │ │ S3  │ │ S4  │ │ S5  │ │ S6  │     │
 │  │Agent│ │Agent│ │Agent│ │Agent│ │Agent│ │Agent│ │Agent│     │
-│  │(Pas)│ │(Pas)│ │(Pas)│ │(Pas)│ │(Pas)│ │(Pas)│ │(Pas)│     │
+│  │(Act)│ │(Act)│ │(Act)│ │(Act)│ │(Act)│ │(Act)│ │(Act)│     │
 │  └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘ └─────┘     │
 └─────────────────────────────────────────────────────────────────┘
 ```
+
+### Verification Environment Architecture
+
+#### **Flat Environment Model (Recommended)**
 
 #### Component Details
 
@@ -146,17 +151,16 @@ Each slave interface contains identical signal structure with different prefixes
 
 **Total Agents: 11**
 - Master Agents: 4 (Active)
-- Slave Agents: 7 (Passive)
+- Slave Agents: 7 (Active)
 
 #### Agent Types and Configuration
 
-**Active Agents (4):**
+**Active Agents (4 + 7):**
 - **axi_master_agent m0_agent**: Master 0 - Full access to all slaves
 - **axi_master_agent m1_agent**: Master 1 - Access to S1, S3, S4 only
 - **axi_master_agent m2_agent**: Master 2 - Access to S1, S2, S4 only
 - **axi_master_agent m3_agent**: Master 3 - Access to S1, S5, S6 only
 
-**Passive Agents (7):**
 - **axi_slave_agent s0_agent**: Slave 0 - Address range 0x0000_0000-0x0000_0FFF
 - **axi_slave_agent s1_agent**: Slave 1 - Address range 0x0000_2000-0x0000_2FFF
 - **axi_slave_agent s2_agent**: Slave 2 - Address range 0x0000_4000-0x0000_4FFF
@@ -185,9 +189,10 @@ Each active master agent contains:
 - **axi_master_monitor**: Observes AXI signals
 - **axi_master_config**: Agent-specific configuration
 
-Each passive slave agent contains:
-- **axi_slave_monitor**: Observes AXI signals
+Each active slave agent contains:
+- **axi_slave_sequencer**: Generates response transactions
 - **axi_slave_driver**: Simple response generation
+- **axi_slave_monitor**: Observes AXI signals
 - **axi_slave_config**: Address range and response configuration
 
 ### Key Features
@@ -202,6 +207,41 @@ Each passive slave agent contains:
 
 1. **Single AXI master cannot issue back-to-back address transactions targeting different slaves**
 2. **Must complete transaction to one slave (including response phase) before initiating another transaction to different slave**
+
+#### **Why Flat Environment Model?**
+- **Simpler Architecture**: Single environment manages all agents
+- **Easier Configuration**: Centralized configuration management
+- **Better Resource Sharing**: Shared scoreboard, checkers, and coverage
+- **Reduced Complexity**: No need for multiple environment instances
+- **Easier Debugging**: Single point of control and monitoring
+
+#### **Virtual Sequencer Coordination**
+**Note**: Both masters and slaves are active agents because:
+- **Masters**: Generate and drive transaction requests
+- **Slaves**: Generate and drive response signals (RVALID, RVALID, BVALID, etc.)
+
+## Benefits of Flat Environment Model
+
+1. **Centralized Control**: Single environment manages all verification components
+2. **Shared Resources**: Common scoreboard, checkers, and coverage across all agents
+3. **Simplified Configuration**: Easier to manage agent configurations and relationships
+4. **Better Debugging**: Single point of control for all verification activities
+5. **Easier Maintenance**: Less code duplication and simpler hierarchy
+6. **Efficient Resource Usage**: Shared components reduce memory and simulation overhead
+
+## Alternative Architectures (Not Recommended)
+
+### **Hierarchical Environment Model**
+- Separate environments for each master/slave group
+- More complex configuration management
+- Duplicate components across environments
+- Harder to coordinate between different environment instances
+
+### **Why Flat Model is Better**
+- **Simplicity**: Easier to understand and maintain
+- **Efficiency**: Better resource utilization
+- **Scalability**: Easier to add new agents or modify existing ones
+- **Debugging**: Centralized monitoring and control
 
 ### Verification Plan
 
