@@ -4,7 +4,6 @@
 // Standalone sequence item for Master 0 with full access to all slaves
 // Extends uvm_sequence_item directly
 
-
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
@@ -237,6 +236,7 @@ class M0_seq_item extends uvm_sequence_item;
     // Constructor
     function new(string name = "M0_seq_item");
         super.new(name);
+        /*
         m0_transaction_id = 0;
         m0_total_transactions = 0;
         m0_write_transactions = 0;
@@ -249,14 +249,15 @@ class M0_seq_item extends uvm_sequence_item;
         transaction_complete = 0;
         start_time = 0;
         end_time = 0;
-        
+        */
+    
         // Initialize arrays
         burst_data = new[1];
         burst_strobe = new[1];
     endfunction
     
     // M0-specific methods
-    
+    /*
     // Set M0 transaction ID
     function void set_m0_transaction_id(int id);
         m0_transaction_id = id;
@@ -468,6 +469,7 @@ class M0_seq_item extends uvm_sequence_item;
                         m0_avg_response_time, m0_min_response_time, m0_max_response_time);
     endfunction
     
+    */
     // UVM Field Macros for automatic copy, compare, print, etc.
     `uvm_object_utils_begin(M0_seq_item)
         `uvm_field_int(m0_transaction_id, UVM_ALL_ON)

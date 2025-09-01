@@ -237,6 +237,7 @@ class M3_seq_item extends uvm_sequence_item;
     // Constructor
     function new(string name = "M3_seq_item");
         super.new(name);
+        /*
         m3_transaction_id = 0;
         m3_total_transactions = 0;
         m3_write_transactions = 0;
@@ -249,14 +250,14 @@ class M3_seq_item extends uvm_sequence_item;
         transaction_complete = 0;
         start_time = 0;
         end_time = 0;
-        
+        */
         // Initialize arrays
         burst_data = new[1];
         burst_strobe = new[1];
     endfunction
     
     // M3-specific methods
-    
+    /*
     // Set M3 transaction ID
     function void set_m3_transaction_id(int id);
         m3_transaction_id = id;
@@ -468,7 +469,7 @@ class M3_seq_item extends uvm_sequence_item;
                         m3_burst_transactions, m3_single_transactions,
                         m3_avg_response_time, m3_min_response_time, m3_max_response_time);
     endfunction
-    
+    */
     // UVM Field Macros for automatic copy, compare, print, etc.
     `uvm_object_utils_begin(M3_seq_item)
         `uvm_field_int(m3_transaction_id, UVM_ALL_ON)

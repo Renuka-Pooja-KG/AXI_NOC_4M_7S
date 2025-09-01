@@ -237,6 +237,7 @@ class M1_seq_item extends uvm_sequence_item;
     // Constructor
     function new(string name = "M1_seq_item");
         super.new(name);
+        /*
         m1_transaction_id = 0;
         m1_total_transactions = 0;
         m1_write_transactions = 0;
@@ -249,14 +250,14 @@ class M1_seq_item extends uvm_sequence_item;
         transaction_complete = 0;
         start_time = 0;
         end_time = 0;
-        
+        */        
         // Initialize arrays
         burst_data = new[1];
         burst_strobe = new[1];
     endfunction
     
     // M1-specific methods
-    
+    /*
     // Set M1 transaction ID
     function void set_m1_transaction_id(int id);
         m1_transaction_id = id;
@@ -467,7 +468,7 @@ class M1_seq_item extends uvm_sequence_item;
                         m1_burst_transactions, m1_single_transactions,
                         m1_avg_response_time, m1_min_response_time, m1_max_response_time);
     endfunction
-    
+    */
     // UVM Field Macros for automatic copy, compare, print, etc.
     `uvm_object_utils_begin(M1_seq_item)
         `uvm_field_int(m1_transaction_id, UVM_ALL_ON)
