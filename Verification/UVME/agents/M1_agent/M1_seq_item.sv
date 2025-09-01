@@ -275,7 +275,7 @@ class M1_seq_item extends uvm_sequence_item;
     // Set transaction type
     function void set_transaction_type(axi_trans_type_e type);
         trans_type = type;
-        if (type == AXI_WRITE) 
+        if (trans_type == AXI_WRITE) 
             m1_write_transactions++;
         else 
             m1_read_transactions++;
