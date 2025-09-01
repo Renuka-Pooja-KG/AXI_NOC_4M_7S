@@ -6,9 +6,6 @@
 `ifndef AXI_NOC_TB_TOP_SV
 `define AXI_NOC_TB_TOP_SV
 
-// Include necessary files
-`include "axi_master_interface.sv"
-`include "axi_slave_interface.sv"
 
 // Testbench top module
 module axi_noc_tb_top;
