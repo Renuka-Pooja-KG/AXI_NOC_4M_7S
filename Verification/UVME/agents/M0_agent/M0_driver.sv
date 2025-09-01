@@ -29,6 +29,8 @@ class M0_driver extends uvm_driver #(M0_seq_item);
     
     // Driver control
     bit m0_driver_enabled;
+
+    int unsigned burst_length;
     
     // Constructor
     function new(string name = "M0_driver", uvm_component parent = null);
@@ -156,7 +158,7 @@ class M0_driver extends uvm_driver #(M0_seq_item);
     virtual task drive_write_data_phase(M0_seq_item item);
         `uvm_info("M0_DRIVER", "Driving Write Data Phase", UVM_FULL)
         
-        int burst_length = get_burst_length(item.M0_AWLEN);
+        burst_length = get_burst_length(item.M0_AWLEN);
         
         for (int i = 0; i < burst_length; i++) begin
             // Set data channel signals through clocking block
@@ -203,7 +205,7 @@ class M0_driver extends uvm_driver #(M0_seq_item);
     // Drive read address phase using clocking block
     virtual task drive_read_address_phase(M0_seq_item item);
         `uvm_info("M0_DRIVER", "Driving Read Address Phase", UVM_FULL)
- repeat (4) @(posedge m0_vif.ACLK);  // 4-clock delay before starting
+        repeat (4) @(posedge m0_vif.ACLK);  // 4-clock delay before starting
            
         // Set address channel signals through clocking block
         m0_vif.m0_cb.M0_ARID <= item.M0_ARID;
@@ -233,7 +235,7 @@ class M0_driver extends uvm_driver #(M0_seq_item);
     virtual task drive_read_data_phase(M0_seq_item item);
         `uvm_info("M0_DRIVER", "Driving Read Data Phase", UVM_FULL)
         repeat (4) @(posedge m0_vif.ACLK);  // 4-clock delay before starting
-        int burst_length = get_burst_length(item.M0_ARLEN);
+        burst_length = get_burst_length(item.M0_ARLEN);
         
         for (int i = 0; i < burst_length; i++) begin
             // Set read ready through clocking block

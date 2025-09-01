@@ -30,6 +30,8 @@ class M3_driver extends uvm_driver #(M3_seq_item);
     // Driver control
     bit m3_driver_enabled;
     
+    int unsigned burst_length;
+    
     // Constructor
     function new(string name = "M3_driver", uvm_component parent = null);
         super.new(name, parent);
@@ -156,7 +158,7 @@ class M3_driver extends uvm_driver #(M3_seq_item);
     virtual task drive_write_data_phase(M3_seq_item item);
         `uvm_info("M3_DRIVER", "Driving Write Data Phase", UVM_FULL)
         
-        int burst_length = get_burst_length(item.M3_AWLEN);
+        burst_length = get_burst_length(item.M3_AWLEN);
         
         for (int i = 0; i < burst_length; i++) begin
             // Set data channel signals through clocking block
@@ -233,7 +235,7 @@ class M3_driver extends uvm_driver #(M3_seq_item);
     virtual task drive_read_data_phase(M3_seq_item item);
         `uvm_info("M3_DRIVER", "Driving Read Data Phase", UVM_FULL)
         repeat (4) @(posedge m3_vif.ACLK);  // 4-clock delay before starting
-        int burst_length = get_burst_length(item.M3_ARLEN);
+        burst_length = get_burst_length(item.M3_ARLEN);
         
         for (int i = 0; i < burst_length; i++) begin
             // Set read ready through clocking block

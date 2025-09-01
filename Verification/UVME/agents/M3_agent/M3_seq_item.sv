@@ -275,11 +275,10 @@ class M3_seq_item extends uvm_sequence_item;
     // Set transaction type
     function void set_transaction_type(axi_trans_type_e type);
         trans_type = type;
-        if (type == AXI_WRITE) begin
+        if (type == AXI_WRITE) 
             m3_write_transactions++;
-        end else begin
+        else 
             m3_read_transactions++;
-        end
         m3_total_transactions++;
     endfunction
     
@@ -298,46 +297,43 @@ class M3_seq_item extends uvm_sequence_item;
     
     // Set burst parameters using package constants
     function void set_burst_parameters(int length, axi_burst_type_e burst, int size);
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             M3_AWLEN = set_axi_length(length);  // Use package function
             M3_AWBURST = burst;
             M3_AWSIZE = $clog2(size);
-        end else begin
+        } else {
             M3_ARLEN = set_axi_length(length);  // Use package function
             M3_ARBURST = burst;
             M3_ARSIZE = $clog2(size);
-        end
+        }
         
         // Resize arrays
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             burst_data = new[length];
             burst_strobe = new[length];
-        end else begin
+        } else {
             burst_data = new[length];
-        end
+        }
     endfunction
     
     // Set address
     function void set_address(bit [AXI_ADDR_WIDTH-1:0] addr);
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) 
             M3_AWADDR = addr;
-        end else begin
+        else 
             M3_ARADDR = addr;
-        end
     endfunction
     
     // Set burst data
     function void set_burst_data(int index, bit [AXI_DATA_WIDTH-1:0] data);
-        if (index < burst_data.size()) begin
+        if (index < burst_data.size()) 
             burst_data[index] = data;
-        end
     endfunction
     
     // Set burst strobe
     function void set_burst_strobe(int index, bit [AXI_STRB_WIDTH-1:0] strobe);
-        if (index < burst_strobe.size()) begin
+        if (index < burst_strobe.size()) 
             burst_strobe[index] = strobe;
-        end
     endfunction
     
     // M3-specific transaction type methods
@@ -351,50 +347,50 @@ class M3_seq_item extends uvm_sequence_item;
     
     // M3-specific burst configuration methods
     function void set_single_transfer();
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             M3_AWLEN = 0;  // Single transfer
             M3_AWBURST = AXI_INCR;
-        end else begin
+        } else {
             M3_ARLEN = 0;  // Single transfer
             M3_ARBURST = AXI_INCR;
-        end
+        }
         m3_single_transactions++;
     endfunction
     
     function void set_burst_transfer(int length, axi_burst_type_e burst_type);
-        if (length > 1) begin
+        if (length > 1) {
             set_burst_parameters(length, burst_type, 4); // Default 4-byte transfers
             m3_burst_transactions++;
-        end else begin
+        } else {
             set_single_transfer();
-        end
+        }
     endfunction
     
     // M3-specific address generation methods using package constants
     function void set_random_address_in_slave_range(axi_slave_id_e slave);
         set_slave_id(slave);
-        if (slave == AXI_SLAVE_0) begin
+        if (slave == AXI_SLAVE_0) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_0_BASE_ADDR, SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_0_BASE_ADDR, SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end else if (slave == AXI_SLAVE_1) begin
+        } else if (slave == AXI_SLAVE_1) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_1_BASE_ADDR, SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_1_BASE_ADDR, SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end else if (slave == AXI_SLAVE_2) begin
+        } else if (slave == AXI_SLAVE_2) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_2_BASE_ADDR, SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_2_BASE_ADDR, SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end else if (slave == AXI_SLAVE_3) begin
+        } else if (slave == AXI_SLAVE_3) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_3_BASE_ADDR, SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_3_BASE_ADDR, SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end else if (slave == AXI_SLAVE_4) begin
+        } else if (slave == AXI_SLAVE_4) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_4_BASE_ADDR, SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_4_BASE_ADDR, SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end else if (slave == AXI_SLAVE_5) begin
+        } else if (slave == AXI_SLAVE_5) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_5_BASE_ADDR, SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_5_BASE_ADDR, SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end else if (slave == AXI_SLAVE_6) begin
+        } else if (slave == AXI_SLAVE_6) {
             if (trans_type == AXI_WRITE) M3_AWADDR = $urandom_range(SLAVE_6_BASE_ADDR, SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
             else M3_ARADDR = $urandom_range(SLAVE_6_BASE_ADDR, SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        end
+        }
     endfunction
     
     // Check if transaction is complete
@@ -415,12 +411,10 @@ class M3_seq_item extends uvm_sequence_item;
     
     // M3-specific performance tracking
     function void update_performance_metrics(time response_time);
-        if (m3_min_response_time == 0 || response_time < m3_min_response_time) begin
+        if (m3_min_response_time == 0 || response_time < m3_min_response_time) 
             m3_min_response_time = response_time;
-        end
-        if (response_time > m3_max_response_time) begin
+        if (response_time > m3_max_response_time) 
             m3_max_response_time = response_time;
-        end
         m3_avg_response_time = ((m3_avg_response_time * (m3_total_transactions - 1)) + response_time) / m3_total_transactions;
     endfunction
     
@@ -430,33 +424,32 @@ class M3_seq_item extends uvm_sequence_item;
         if (slave_id < AXI_SLAVE_0 || slave_id > AXI_SLAVE_6) return 0;
         
         // Check address alignment using package function
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             if (!is_address_aligned(M3_AWADDR, M3_AWSIZE)) return 0;
-        end else begin
+        } else {
             if (!is_address_aligned(M3_ARADDR, M3_ARSIZE)) return 0;
-        end
+        }
         
         // Check burst length
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             if (M3_AWLEN < 0 || M3_AWLEN >= AXI_MAX_BURST_LENGTH) return 0;
-        end else begin
+        } else {
             if (M3_ARLEN < 0 || M3_ARLEN >= AXI_MAX_BURST_LENGTH) return 0;
-        end
+        }
         
         return 1;
     endfunction
     
     // Get transaction info string
     function string get_transaction_info();
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) 
             return $sformatf("M3->S%0d WRITE ID=%0d Len=%0d Addr=0x%08x Burst=%s", 
                             slave_id, M3_AWID, get_burst_length(M3_AWLEN), M3_AWADDR, 
                             M3_AWBURST.name());
-        end else begin
-            return $sformatf("M3->S%0d READ ID=%0d Len=%0d Addr=0x%08x Burst=%s", 
+        else 
+            return $sformatf("M3->S%0d read ID=%0d Len=%0d Addr=0x%08x Burst=%s", 
                             slave_id, M3_ARID, get_burst_length(M3_ARLEN), M3_ARADDR, 
                             M3_ARBURST.name());
-        end
     endfunction
     
     // M3-specific transaction info
