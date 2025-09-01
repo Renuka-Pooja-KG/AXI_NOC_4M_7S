@@ -3,6 +3,12 @@
 //=============================================================================
 // Simple sequence item for Slave 4 with AXI slave interface
 
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
+// Import the common AXI types package
+import axi_common_types_pkg::*;
+
 class S4_seq_item extends uvm_sequence_item;
     
     // S4-specific transaction identification
@@ -24,7 +30,6 @@ class S4_seq_item extends uvm_sequence_item;
     bit [AXI_PROT_WIDTH-1:0]   S4_AWPROT;         // Protection attributes (from master)
     bit [AXI_QOS_WIDTH-1:0]    S4_AWQOS;          // Quality of service (from master)
     bit [AXI_REGION_WIDTH-1:0] S4_AWREGION;       // Region identifier (from master)
-    bit [0:0]                  S4_AWUSER;         // Write address user path (from master)
     bit                        S4_AWVALID;        // Write address valid (from master)
     rand bit                   S4_AWREADY;        // Write address ready (S4 drives this)
     
@@ -35,7 +40,6 @@ class S4_seq_item extends uvm_sequence_item;
     bit                        S4_WLAST;          // Write last (from master)
     bit                        S4_WVALID;         // Write valid (from master)
     rand bit                   S4_WREADY;         // Write ready (S4 drives this)
-    bit [0:0]                  S4_WUSER;          // Write data user path (from master)
     
     // ===== WRITE RESPONSE CHANNEL (B) =====
     // S4 drives these signals to masters
@@ -43,7 +47,6 @@ class S4_seq_item extends uvm_sequence_item;
     rand bit [AXI_RESP_WIDTH-1:0] S4_BRESP;       // Write response (S4 drives this)
     rand bit                    S4_BVALID;         // Write response valid (S4 drives this)
     bit                         S4_BREADY;         // Write response ready (from master)
-    rand bit [0:0]             S4_BUSER;          // Write response user path (S4 drives this)
     
     // ===== READ ADDRESS CHANNEL (AR) =====
     // S4 receives these signals from masters
@@ -57,7 +60,6 @@ class S4_seq_item extends uvm_sequence_item;
     bit [AXI_PROT_WIDTH-1:0]   S4_ARPROT;         // Protection attributes (from master)
     bit [AXI_QOS_WIDTH-1:0]    S4_ARQOS;          // Quality of service (from master)
     bit [AXI_REGION_WIDTH-1:0] S4_ARREGION;       // Region identifier (from master)
-    bit [0:0]                  S4_ARUSER;         // Read address user path (from master)
     bit                        S4_ARVALID;        // Read address valid (from master)
     rand bit                   S4_ARREADY;        // Read address ready (S4 drives this)
     
@@ -69,16 +71,10 @@ class S4_seq_item extends uvm_sequence_item;
     rand bit                    S4_RLAST;          // Read last (S4 drives this)
     rand bit                    S4_RVALID;         // Read valid (S4 drives this)
     bit                         S4_RREADY;         // Read ready (from master)
-    rand bit [0:0]             S4_RUSER;          // Read data user path (S4 drives this)
     
     // ===== BURST DATA ARRAYS =====
     rand bit [AXI_DATA_WIDTH-1:0]   burst_data[];   // Array for burst data
     rand bit [AXI_STRB_WIDTH-1:0]   burst_strobe[]; // Array for burst strobes
-    
-    // ===== STATUS AND TIMING =====
-    bit                             transaction_complete;
-    time                            start_time;
-    time                            end_time;
     
     // Constraints
     constraint master_id_c {
@@ -184,29 +180,13 @@ class S4_seq_item extends uvm_sequence_item;
         // Initialize arrays
         burst_data = new[1];
         burst_strobe = new[1];
-        // Initialize timing
-        start_time = 0;
-        end_time = 0;
-        transaction_complete = 0;
-    endfunction
-    
-    // Start transaction timing
-    function void start_transaction();
-        start_time = $realtime;
-        transaction_complete = 0;
-    endfunction
-    
-    // End transaction timing
-    function void end_transaction();
-        end_time = $realtime;
-        transaction_complete = 1;
     endfunction
     
     // UVM field macros for automation
     `uvm_object_utils_begin(S4_seq_item)
         `uvm_field_int(s4_transaction_id, UVM_ALL_ON)
-        `uvm_field_enum(axi_master_id_e, master_id, UVM_ALL_ON)
-        `uvm_field_enum(axi_trans_type_e, trans_type, UVM_ALL_ON)
+        `uvm_field_int(master_id, UVM_ALL_ON)
+        `uvm_field_int(trans_type, UVM_ALL_ON)
         
         // Write Address Channel
         `uvm_field_int(S4_AWID, UVM_ALL_ON)
@@ -219,7 +199,6 @@ class S4_seq_item extends uvm_sequence_item;
         `uvm_field_int(S4_AWPROT, UVM_ALL_ON)
         `uvm_field_int(S4_AWQOS, UVM_ALL_ON)
         `uvm_field_int(S4_AWREGION, UVM_ALL_ON)
-        `uvm_field_int(S4_AWUSER, UVM_ALL_ON)
         `uvm_field_int(S4_AWVALID, UVM_ALL_ON)
         `uvm_field_int(S4_AWREADY, UVM_ALL_ON)
         
@@ -229,14 +208,12 @@ class S4_seq_item extends uvm_sequence_item;
         `uvm_field_int(S4_WLAST, UVM_ALL_ON)
         `uvm_field_int(S4_WVALID, UVM_ALL_ON)
         `uvm_field_int(S4_WREADY, UVM_ALL_ON)
-        `uvm_field_int(S4_WUSER, UVM_ALL_ON)
         
         // Write Response Channel
         `uvm_field_int(S4_BID, UVM_ALL_ON)
         `uvm_field_int(S4_BRESP, UVM_ALL_ON)
         `uvm_field_int(S4_BVALID, UVM_ALL_ON)
         `uvm_field_int(S4_BREADY, UVM_ALL_ON)
-        `uvm_field_int(S4_BUSER, UVM_ALL_ON)
         
         // Read Address Channel
         `uvm_field_int(S4_ARID, UVM_ALL_ON)
@@ -249,7 +226,6 @@ class S4_seq_item extends uvm_sequence_item;
         `uvm_field_int(S4_ARPROT, UVM_ALL_ON)
         `uvm_field_int(S4_ARQOS, UVM_ALL_ON)
         `uvm_field_int(S4_ARREGION, UVM_ALL_ON)
-        `uvm_field_int(S4_ARUSER, UVM_ALL_ON)
         `uvm_field_int(S4_ARVALID, UVM_ALL_ON)
         `uvm_field_int(S4_ARREADY, UVM_ALL_ON)
         
@@ -260,16 +236,10 @@ class S4_seq_item extends uvm_sequence_item;
         `uvm_field_int(S4_RLAST, UVM_ALL_ON)
         `uvm_field_int(S4_RVALID, UVM_ALL_ON)
         `uvm_field_int(S4_RREADY, UVM_ALL_ON)
-        `uvm_field_int(S4_RUSER, UVM_ALL_ON)
         
         // Arrays
-        `uvm_field_sarray_int(burst_data, UVM_ALL_ON)
-        `uvm_field_sarray_int(burst_strobe, UVM_ALL_ON)
-        
-        // Status and timing
-        `uvm_field_int(transaction_complete, UVM_ALL_ON)
-        `uvm_field_int(start_time, UVM_ALL_ON)
-        `uvm_field_int(end_time, UVM_ALL_ON)
+        `uvm_field_array_int(burst_data, UVM_ALL_ON)
+        `uvm_field_array_int(burst_strobe, UVM_ALL_ON)
     `uvm_object_utils_end
     
 endclass : S4_seq_item

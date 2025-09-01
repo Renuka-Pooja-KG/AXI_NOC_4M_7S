@@ -91,14 +91,12 @@ class S5_driver extends uvm_driver #(S5_seq_item);
         s5_vif.s5_cb.S5_BID <= '0;
         s5_vif.s5_cb.S5_BRESP <= '0;
         s5_vif.s5_cb.S5_BVALID <= 1'b0;
-        s5_vif.s5_cb.S5_BUSER <= '0;
         s5_vif.s5_cb.S5_ARREADY <= 1'b0;
         s5_vif.s5_cb.S5_RID <= '0;
         s5_vif.s5_cb.S5_RDATA <= '0;
         s5_vif.s5_cb.S5_RRESP <= '0;
         s5_vif.s5_cb.S5_RLAST <= 1'b0;
         s5_vif.s5_cb.S5_RVALID <= 1'b0;
-        s5_vif.s5_cb.S5_RUSER <= '0;
         
         `uvm_info("S5_DRIVER", "S5 interface signals initialized", UVM_LOW)
     endtask
@@ -135,7 +133,6 @@ class S5_driver extends uvm_driver #(S5_seq_item);
         // Set write response signals
         s5_vif.s5_cb.S5_BID <= s5_seqi_inst.S5_BID;
         s5_vif.s5_cb.S5_BRESP <= s5_seqi_inst.S5_BRESP;
-        s5_vif.s5_cb.S5_BUSER <= s5_seqi_inst.S5_BUSER;
         
         // Handle write strobe for response
         if (s5_vif.s5_cb.S5_WSTRB == 4'hF) begin
@@ -185,7 +182,6 @@ class S5_driver extends uvm_driver #(S5_seq_item);
             s5_vif.s5_cb.S5_RDATA <= $random;  // Generate random read data
             s5_vif.s5_cb.S5_RLAST <= (i == b_len - 1) ? 1'b1 : 1'b0;  // Set RLAST for final beat
             s5_vif.s5_cb.S5_RRESP <= s5_seqi_inst.S5_RRESP;
-            s5_vif.s5_cb.S5_RUSER <= s5_seqi_inst.S5_RUSER;
             
             @(posedge s5_vif.ACLK);  // Synchronize to clock edge
         end

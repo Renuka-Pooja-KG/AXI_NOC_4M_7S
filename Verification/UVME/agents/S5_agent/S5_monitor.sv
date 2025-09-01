@@ -75,13 +75,12 @@ class S5_monitor extends uvm_monitor;
                 mon_item.S5_AWPROT = s5_vif.s5_monitor_cb.S5_AWPROT;
                 mon_item.S5_AWQOS = s5_vif.s5_monitor_cb.S5_AWQOS;
                 mon_item.S5_AWREGION = s5_vif.s5_monitor_cb.S5_AWREGION;
-                mon_item.S5_AWUSER = s5_vif.s5_monitor_cb.S5_AWUSER;
                 
                 // Log write address transaction
-                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_AWVALID: %0b, S5_AWREADY: %0b, S5_AWID: 0x%0h, S5_AWADDR: 0x%0h, S5_AWLEN: %0d, S5_AWSIZE: %0d, S5_AWBURST: %0d, S5_AWLOCK: %0b, S5_AWCACHE: 0x%0h, S5_AWPROT: 0x%0h, S5_AWQOS: 0x%0h, S5_AWREGION: 0x%0h, S5_AWUSER: 0x%0h", 
+                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_AWVALID: %0b, S5_AWREADY: %0b, S5_AWID: 0x%0h, S5_AWADDR: 0x%0h, S5_AWLEN: %0d, S5_AWSIZE: %0d, S5_AWBURST: %0d, S5_AWLOCK: %0b, S5_AWCACHE: 0x%0h, S5_AWPROT: 0x%0h, S5_AWQOS: 0x%0h, S5_AWREGION: 0x%0h", 
                             $realtime, mon_item.S5_AWVALID, mon_item.S5_AWREADY, mon_item.S5_AWID, mon_item.S5_AWADDR, 
                             mon_item.S5_AWLEN, mon_item.S5_AWSIZE, mon_item.S5_AWBURST, mon_item.S5_AWLOCK, 
-                            mon_item.S5_AWCACHE, mon_item.S5_AWPROT, mon_item.S5_AWQOS, mon_item.S5_AWREGION, mon_item.S5_AWUSER), UVM_LOW)
+                            mon_item.S5_AWCACHE, mon_item.S5_AWPROT, mon_item.S5_AWQOS, mon_item.S5_AWREGION), UVM_LOW)
             end
             
             // Check for write data handshake
@@ -91,12 +90,11 @@ class S5_monitor extends uvm_monitor;
                 mon_item.S5_WDATA = s5_vif.s5_monitor_cb.S5_WDATA;
                 mon_item.S5_WSTRB = s5_vif.s5_monitor_cb.S5_WSTRB;
                 mon_item.S5_WLAST = s5_vif.s5_monitor_cb.S5_WLAST;
-                mon_item.S5_WUSER = s5_vif.s5_monitor_cb.S5_WUSER;
                 
                 // Log write data transaction
-                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_WVALID: %0b, S5_WREADY: %0b, S5_WDATA: 0x%0h, S5_WSTRB: 0x%0h, S5_WLAST: %0b, S5_WUSER: 0x%0h", 
+                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_WVALID: %0b, S5_WREADY: %0b, S5_WDATA: 0x%0h, S5_WSTRB: 0x%0h, S5_WLAST: %0b", 
                             $realtime, mon_item.S5_WVALID, mon_item.S5_WREADY, mon_item.S5_WDATA, 
-                            mon_item.S5_WSTRB, mon_item.S5_WLAST, mon_item.S5_WUSER), UVM_LOW)
+                            mon_item.S5_WSTRB, mon_item.S5_WLAST), UVM_LOW)
             end
             
             // Check for write response handshake
@@ -106,12 +104,11 @@ class S5_monitor extends uvm_monitor;
                 mon_item.S5_BVALID = s5_vif.s5_monitor_cb.S5_BVALID;
                 mon_item.S5_BREADY = s5_vif.s5_monitor_cb.S5_BREADY;
                 mon_item.S5_BRESP = s5_vif.s5_monitor_cb.S5_BRESP;
-                mon_item.S5_BUSER = s5_vif.s5_monitor_cb.S5_BUSER;
                 
                 // Log write response transaction
-                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_BVALID: %0b, S5_BREADY: %0b, S5_BID: 0x%0h, S5_BRESP: %0d, S5_BUSER: 0x%0h", 
+                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_BVALID: %0b, S5_BREADY: %0b, S5_BID: 0x%0h, S5_BRESP: %0d", 
                             $realtime, mon_item.S5_BVALID, mon_item.S5_BREADY, mon_item.S5_BID, 
-                            mon_item.S5_BRESP, mon_item.S5_BUSER), UVM_LOW)
+                            mon_item.S5_BRESP), UVM_LOW)
             end
             
             // Check for read address handshake
@@ -129,13 +126,12 @@ class S5_monitor extends uvm_monitor;
                 mon_item.S5_ARPROT = s5_vif.s5_monitor_cb.S5_ARPROT;
                 mon_item.S5_ARQOS = s5_vif.s5_monitor_cb.S5_ARQOS;
                 mon_item.S5_ARREGION = s5_vif.s5_monitor_cb.S5_ARREGION;
-                mon_item.S5_ARUSER = s5_vif.s5_monitor_cb.S5_ARUSER;
                 
                 // Log read address transaction
-                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_ARVALID: %0b, S5_ARREADY: %0b, S5_ARID: 0x%0h, S5_ARADDR: 0x%0h, S5_ARLEN: %0d, S5_ARSIZE: %0d, S5_ARBURST: %0d, S5_ARLOCK: %0b, S5_ARCACHE: 0x%0h, S5_ARPROT: 0x%0h, S5_ARQOS: 0x%0h, S5_ARREGION: 0x%0h, S5_ARUSER: 0x%0h", 
+                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_ARVALID: %0b, S5_ARREADY: %0b, S5_ARID: 0x%0h, S5_ARADDR: 0x%0h, S5_ARLEN: %0d, S5_ARSIZE: %0d, S5_ARBURST: %0d, S5_ARLOCK: %0b, S5_ARCACHE: 0x%0h, S5_ARPROT: 0x%0h, S5_ARQOS: 0x%0h, S5_ARREGION: 0x%0h", 
                             $realtime, mon_item.S5_ARVALID, mon_item.S5_ARREADY, mon_item.S5_ARID, mon_item.S5_ARADDR, 
                             mon_item.S5_ARLEN, mon_item.S5_ARSIZE, mon_item.S5_ARBURST, mon_item.S5_ARLOCK, 
-                            mon_item.S5_ARCACHE, mon_item.S5_ARPROT, mon_item.S5_ARQOS, mon_item.S5_ARREGION, mon_item.S5_ARUSER), UVM_LOW)
+                            mon_item.S5_ARCACHE, mon_item.S5_ARPROT, mon_item.S5_ARQOS, mon_item.S5_ARREGION), UVM_LOW)
             end
             
             // Check for read data handshake
@@ -147,12 +143,11 @@ class S5_monitor extends uvm_monitor;
                 mon_item.S5_RDATA = s5_vif.s5_monitor_cb.S5_RDATA;
                 mon_item.S5_RRESP = s5_vif.s5_monitor_cb.S5_RRESP;
                 mon_item.S5_RLAST = s5_vif.s5_monitor_cb.S5_RLAST;
-                mon_item.S5_RUSER = s5_vif.s5_monitor_cb.S5_RUSER;
                 
                 // Log read data transaction
-                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_RVALID: %0b, S5_RREADY: %0b, S5_RID: 0x%0h, S5_RDATA: 0x%0h, S5_RRESP: %0d, S5_RLAST: %0b, S5_RUSER: 0x%0h", 
+                `uvm_info("S5_MONITOR", $sformatf("Time: %0t, S5_RVALID: %0b, S5_RREADY: %0b, S5_RID: 0x%0h, S5_RDATA: 0x%0h, S5_RRESP: %0d, S5_RLAST: %0b", 
                             $realtime, mon_item.S5_RVALID, mon_item.S5_RREADY, mon_item.S5_RID, mon_item.S5_RDATA, 
-                            mon_item.S5_RRESP, mon_item.S5_RLAST, mon_item.S5_RUSER), UVM_LOW)
+                            mon_item.S5_RRESP, mon_item.S5_RLAST), UVM_LOW)
             end
             
             // End of monitor

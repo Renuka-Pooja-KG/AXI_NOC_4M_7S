@@ -91,14 +91,12 @@ class S3_driver extends uvm_driver #(S3_seq_item);
         s3_vif.s3_cb.S3_BID <= '0;
         s3_vif.s3_cb.S3_BRESP <= '0;
         s3_vif.s3_cb.S3_BVALID <= 1'b0;
-        s3_vif.s3_cb.S3_BUSER <= '0;
         s3_vif.s3_cb.S3_ARREADY <= 1'b0;
         s3_vif.s3_cb.S3_RID <= '0;
         s3_vif.s3_cb.S3_RDATA <= '0;
         s3_vif.s3_cb.S3_RRESP <= '0;
         s3_vif.s3_cb.S3_RLAST <= 1'b0;
         s3_vif.s3_cb.S3_RVALID <= 1'b0;
-        s3_vif.s3_cb.S3_RUSER <= '0;
         
         `uvm_info("S3_DRIVER", "S3 interface signals initialized", UVM_LOW)
     endtask
@@ -135,7 +133,6 @@ class S3_driver extends uvm_driver #(S3_seq_item);
         // Set write response signals
         s3_vif.s3_cb.S3_BID <= s3_seqi_inst.S3_BID;
         s3_vif.s3_cb.S3_BRESP <= s3_seqi_inst.S3_BRESP;
-        s3_vif.s3_cb.S3_BUSER <= s3_seqi_inst.S3_BUSER;
         
         // Handle write strobe for response
         if (s3_vif.s3_cb.S3_WSTRB == 4'hF) begin
@@ -185,7 +182,6 @@ class S3_driver extends uvm_driver #(S3_seq_item);
             s3_vif.s3_cb.S3_RDATA <= $random;  // Generate random read data
             s3_vif.s3_cb.S3_RLAST <= (i == b_len - 1) ? 1'b1 : 1'b0;  // Set RLAST for final beat
             s3_vif.s3_cb.S3_RRESP <= s3_seqi_inst.S3_RRESP;
-            s3_vif.s3_cb.S3_RUSER <= s3_seqi_inst.S3_RUSER;
             
             @(posedge s3_vif.ACLK);  // Synchronize to clock edge
         end

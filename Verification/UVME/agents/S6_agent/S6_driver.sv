@@ -91,14 +91,12 @@ class S6_driver extends uvm_driver #(S6_seq_item);
         s6_vif.s6_cb.S6_BID <= '0;
         s6_vif.s6_cb.S6_BRESP <= '0;
         s6_vif.s6_cb.S6_BVALID <= 1'b0;
-        s6_vif.s6_cb.S6_BUSER <= '0;
         s6_vif.s6_cb.S6_ARREADY <= 1'b0;
         s6_vif.s6_cb.S6_RID <= '0;
         s6_vif.s6_cb.S6_RDATA <= '0;
         s6_vif.s6_cb.S6_RRESP <= '0;
         s6_vif.s6_cb.S6_RLAST <= 1'b0;
         s6_vif.s6_cb.S6_RVALID <= 1'b0;
-        s6_vif.s6_cb.S6_RUSER <= '0;
         
         `uvm_info("S6_DRIVER", "S6 interface signals initialized", UVM_LOW)
     endtask
@@ -135,7 +133,7 @@ class S6_driver extends uvm_driver #(S6_seq_item);
         // Set write response signals
         s6_vif.s6_cb.S6_BID <= s6_seqi_inst.S6_BID;
         s6_vif.s6_cb.S6_BRESP <= s6_seqi_inst.S6_BRESP;
-        s6_vif.s6_cb.S6_BUSER <= s6_seqi_inst.S6_BUSER;
+        s6_vif.s6_cb.S6_BVALID <= s6_seqi_inst.S6_BVALID;
         
         // Handle write strobe for response
         if (s6_vif.s6_cb.S6_WSTRB == 4'hF) begin
@@ -185,7 +183,6 @@ class S6_driver extends uvm_driver #(S6_seq_item);
             s6_vif.s6_cb.S6_RDATA <= $random;  // Generate random read data
             s6_vif.s6_cb.S6_RLAST <= (i == b_len - 1) ? 1'b1 : 1'b0;  // Set RLAST for final beat
             s6_vif.s6_cb.S6_RRESP <= s6_seqi_inst.S6_RRESP;
-            s6_vif.s6_cb.S6_RUSER <= s6_seqi_inst.S6_RUSER;
             
             @(posedge s6_vif.ACLK);  // Synchronize to clock edge
         end

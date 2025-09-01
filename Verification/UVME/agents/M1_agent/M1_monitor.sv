@@ -75,13 +75,12 @@ class M1_monitor extends uvm_monitor;
                     mon_item.M1_AWPROT = m1_vif.m1_monitor_cb.M1_AWPROT;
                     mon_item.M1_AWQOS = m1_vif.m1_monitor_cb.M1_AWQOS;
                     mon_item.M1_AWREGION = m1_vif.m1_monitor_cb.M1_AWREGION;
-                    mon_item.M1_AWUSER = m1_vif.m1_monitor_cb.M1_AWUSER;
                     
                     // Log write address transaction
-                    `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_AWVALID: %0b, M1_AWREADY: %0b, M1_AWID: 0x%0h, M1_AWADDR: 0x%0h, M1_AWLEN: %0d, M1_AWSIZE: %0d, M1_AWBURST: %0d, M1_AWLOCK: %0b, M1_AWCACHE: 0x%0h, M1_AWPROT: 0x%0h, M1_AWQOS: 0x%0h, M1_AWREGION: 0x%0h, M1_AWUSER: 0x%0h", 
+                    `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_AWVALID: %0b, M1_AWREADY: %0b, M1_AWID: 0x%0h, M1_AWADDR: 0x%0h, M1_AWLEN: %0d, M1_AWSIZE: %0d, M1_AWBURST: %0d, M1_AWLOCK: %0b, M1_AWCACHE: 0x%0h, M1_AWPROT: 0x%0h, M1_AWQOS: 0x%0h, M1_AWREGION: 0x%0h", 
                                 $realtime, mon_item.M1_AWVALID, mon_item.M1_AWREADY, mon_item.M1_AWID, mon_item.M1_AWADDR, 
                                 mon_item.M1_AWLEN, mon_item.M1_AWSIZE, mon_item.M1_AWBURST, mon_item.M1_AWLOCK, 
-                                mon_item.M1_AWCACHE, mon_item.M1_AWPROT, mon_item.M1_AWQOS, mon_item.M1_AWREGION, mon_item.M1_AWUSER), UVM_LOW)
+                                mon_item.M1_AWCACHE, mon_item.M1_AWPROT, mon_item.M1_AWQOS, mon_item.M1_AWREGION), UVM_LOW)
             end
             
             // Check for write data handshake
@@ -91,12 +90,11 @@ class M1_monitor extends uvm_monitor;
                     mon_item.M1_WDATA = m1_vif.m1_monitor_cb.M1_WDATA;
                     mon_item.M1_WSTRB = m1_vif.m1_monitor_cb.M1_WSTRB;
                     mon_item.M1_WLAST = m1_vif.m1_monitor_cb.M1_WLAST;
-                    mon_item.M1_WUSER = m1_vif.m1_monitor_cb.M1_WUSER;
                     
                     // Log write data transaction
-                    `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_WVALID: %0b, M1_WREADY: %0b, M1_WDATA: 0x%0h, M1_WSTRB: 0x%0h, M1_WLAST: %0b, M1_WUSER: 0x%0h", 
+                    `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_WVALID: %0b, M1_WREADY: %0b, M1_WDATA: 0x%0h, M1_WSTRB: 0x%0h, M1_WLAST: %0b", 
                                 $realtime, mon_item.M1_WVALID, mon_item.M1_WREADY, mon_item.M1_WDATA, 
-                                mon_item.M1_WSTRB, mon_item.M1_WLAST, mon_item.M1_WUSER), UVM_LOW)
+                                mon_item.M1_WSTRB, mon_item.M1_WLAST), UVM_LOW)
             end
             
             // Check for write response handshake
@@ -106,12 +104,11 @@ class M1_monitor extends uvm_monitor;
                 mon_item.M1_BVALID = m1_vif.m1_monitor_cb.M1_BVALID;
                 mon_item.M1_BREADY = m1_vif.m1_monitor_cb.M1_BREADY;
                 mon_item.M1_BRESP = m1_vif.m1_monitor_cb.M1_BRESP;
-                mon_item.M1_BUSER = m1_vif.m1_monitor_cb.M1_BUSER;
                 
                 // Log write response transaction
-                `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_BVALID: %0b, M1_BREADY: %0b, M1_BID: 0x%0h, M1_BRESP: %0d, M1_BUSER: 0x%0h", 
+                `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_BVALID: %0b, M1_BREADY: %0b, M1_BID: 0x%0h, M1_BRESP: %0d", 
                             $realtime, mon_item.M1_BVALID, mon_item.M1_BREADY, mon_item.M1_BID, 
-                            mon_item.M1_BRESP, mon_item.M1_BUSER), UVM_LOW)
+                            mon_item.M1_BRESP), UVM_LOW)
             end
             
             // Check for read address handshake
@@ -129,13 +126,12 @@ class M1_monitor extends uvm_monitor;
                 mon_item.M1_ARPROT = m1_vif.m1_monitor_cb.M1_ARPROT;
                 mon_item.M1_ARQOS = m1_vif.m1_monitor_cb.M1_ARQOS;
                 mon_item.M1_ARREGION = m1_vif.m1_monitor_cb.M1_ARREGION;
-                mon_item.M1_ARUSER = m1_vif.m1_monitor_cb.M1_ARUSER;
                 
                 // Log read address transaction
-                `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_ARVALID: %0b, M1_ARREADY: %0b, M1_ARID: 0x%0h, M1_ARADDR: 0x%0h, M1_ARLEN: %0d, M1_ARSIZE: %0d, M1_ARBURST: %0d, M1_ARLOCK: %0b, M1_ARCACHE: 0x%0h, M1_ARPROT: 0x%0h, M1_ARQOS: 0x%0h, M1_ARREGION: 0x%0h, M1_ARUSER: 0x%0h", 
+                `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_ARVALID: %0b, M1_ARREADY: %0b, M1_ARID: 0x%0h, M1_ARADDR: 0x%0h, M1_ARLEN: %0d, M1_ARSIZE: %0d, M1_ARBURST: %0d, M1_ARLOCK: %0b, M1_ARCACHE: 0x%0h, M1_ARPROT: 0x%0h, M1_ARQOS: 0x%0h, M1_ARREGION: 0x%0h", 
                             $realtime, mon_item.M1_ARVALID, mon_item.M1_ARREADY, mon_item.M1_ARID, mon_item.M1_ARADDR, 
                             mon_item.M1_ARLEN, mon_item.M1_ARSIZE, mon_item.M1_ARBURST, mon_item.M1_ARLOCK, 
-                            mon_item.M1_ARCACHE, mon_item.M1_ARPROT, mon_item.M1_ARQOS, mon_item.M1_ARREGION, mon_item.M1_ARUSER), UVM_LOW)
+                            mon_item.M1_ARCACHE, mon_item.M1_ARPROT, mon_item.M1_ARQOS, mon_item.M1_ARREGION), UVM_LOW)
             end
             
             // Check for read data handshake
@@ -147,12 +143,11 @@ class M1_monitor extends uvm_monitor;
                 mon_item.M1_RDATA = m1_vif.m1_monitor_cb.M1_RDATA;
                 mon_item.M1_RRESP = m1_vif.m1_monitor_cb.M1_RRESP;
                 mon_item.M1_RLAST = m1_vif.m1_monitor_cb.M1_RLAST;
-                mon_item.M1_RUSER = m1_vif.m1_monitor_cb.M1_RUSER;
                 
                 // Log read data transaction
-                `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_RVALID: %0b, M1_RREADY: %0b, M1_RID: 0x%0h, M1_RDATA: 0x%0h, M1_RRESP: %0d, M1_RLAST: %0b, M1_RUSER: 0x%0h", 
+                `uvm_info("M1_MONITOR", $sformatf("Time: %0t, M1_RVALID: %0b, M1_RREADY: %0b, M1_RID: 0x%0h, M1_RDATA: 0x%0h, M1_RRESP: %0d, M1_RLAST: %0b", 
                             $realtime, mon_item.M1_RVALID, mon_item.M1_RREADY, mon_item.M1_RID, mon_item.M1_RDATA, 
-                            mon_item.M1_RRESP, mon_item.M1_RLAST, mon_item.M1_RUSER), UVM_LOW)
+                            mon_item.M1_RRESP, mon_item.M1_RLAST), UVM_LOW)
             end
             
             // End of monitor

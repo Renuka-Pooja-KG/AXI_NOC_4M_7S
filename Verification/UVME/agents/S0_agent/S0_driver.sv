@@ -91,14 +91,12 @@ class S0_driver extends uvm_driver #(S0_seq_item);
         s0_vif.s0_cb.S0_BID <= '0;
         s0_vif.s0_cb.S0_BRESP <= '0;
         s0_vif.s0_cb.S0_BVALID <= 1'b0;
-        s0_vif.s0_cb.S0_BUSER <= '0;
         s0_vif.s0_cb.S0_ARREADY <= 1'b0;
         s0_vif.s0_cb.S0_RID <= '0;
         s0_vif.s0_cb.S0_RDATA <= '0;
         s0_vif.s0_cb.S0_RRESP <= '0;
         s0_vif.s0_cb.S0_RLAST <= 1'b0;
         s0_vif.s0_cb.S0_RVALID <= 1'b0;
-        s0_vif.s0_cb.S0_RUSER <= '0;
         
         `uvm_info("S0_DRIVER", "S0 interface signals initialized", UVM_LOW)
     endtask
@@ -135,7 +133,6 @@ class S0_driver extends uvm_driver #(S0_seq_item);
         // Set write response signals
         s0_vif.s0_cb.S0_BID <= s0_seqi_inst.S0_BID;
         s0_vif.s0_cb.S0_BRESP <= s0_seqi_inst.S0_BRESP;
-        s0_vif.s0_cb.S0_BUSER <= s0_seqi_inst.S0_BUSER;
         
         // Handle write strobe for response
         if (s0_vif.s0_cb.S0_WSTRB == 4'hF) begin
@@ -185,7 +182,6 @@ class S0_driver extends uvm_driver #(S0_seq_item);
             s0_vif.s0_cb.S0_RDATA <= $random;  // Generate random read data
             s0_vif.s0_cb.S0_RLAST <= (i == b_len - 1) ? 1'b1 : 1'b0;  // Set RLAST for final beat
             s0_vif.s0_cb.S0_RRESP <= s0_seqi_inst.S0_RRESP;
-            s0_vif.s0_cb.S0_RUSER <= s0_seqi_inst.S0_RUSER;
             
             @(posedge s0_vif.ACLK);  // Synchronize to clock edge
         end
