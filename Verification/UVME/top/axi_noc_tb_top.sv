@@ -10,6 +10,8 @@
 // Testbench top module
 module axi_noc_tb_top;
 
+
+    
     // ===== CLOCK AND RESET GENERATION =====
     logic ACLK;
     logic ARESETn;
@@ -691,8 +693,8 @@ module axi_noc_tb_top;
         uvm_config_db#(virtual S5_interface)::set(null, "*", "slave5_vif", slave5_if);
         uvm_config_db#(virtual S6_interface)::set(null, "*", "slave6_vif", slave6_if);
         
-            // Set up UVM verbosity
-        uvm_top.set_report_verbosity_level(UVM_LOW);
+            // Set up UVM verbosity (UVM_LOW = 0)
+        uvm_top.set_report_verbosity_level(0);
         
         // Enable UVM transaction recording
         uvm_top.enable_print_topology = 1;
