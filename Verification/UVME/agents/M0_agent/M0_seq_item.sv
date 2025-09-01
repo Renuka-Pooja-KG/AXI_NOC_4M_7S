@@ -273,14 +273,9 @@ class M0_seq_item extends uvm_sequence_item;
     endfunction
     
     // Set transaction type
-    function void set_transaction_type(axi_trans_type_e type);
-        trans_type = type;
-        if (trans_type == AXI_WRITE) 
-            m0_write_transactions++;
-        else 
-            m0_read_transactions++;
-        m0_total_transactions++;
-    endfunction
+    // function void set_transaction_type(axi_trans_type_e type);
+    //     trans_type = type;
+    // endfunction
     
     // M0-specific slave selection methods
     function void set_random_slave();
@@ -338,11 +333,15 @@ class M0_seq_item extends uvm_sequence_item;
     
     // M0-specific transaction type methods
     function void set_write_transaction();
-        set_transaction_type(AXI_WRITE);
+        trans_type = AXI_WRITE;
+        m0_total_transactions++;
+        m0_write_transactions++;
     endfunction
     
     function void set_read_transaction();
-        set_transaction_type(AXI_READ);
+        trans_type = AXI_READ;
+        m0_total_transactions++;
+        m0_read_transactions++;
     endfunction
     
     // M0-specific burst configuration methods
