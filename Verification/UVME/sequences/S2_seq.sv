@@ -40,14 +40,12 @@ class S2_seq extends uvm_sequence #(S2_seq_item);
             S2_seqi_inst.S2_BID = 0;
             S2_seqi_inst.S2_BRESP = 0;
             S2_seqi_inst.S2_BVALID = 1'b0;
-            S2_seqi_inst.S2_BUSER = 0;
             S2_seqi_inst.S2_ARREADY = 1'b1;
             S2_seqi_inst.S2_RID = 0;
             S2_seqi_inst.S2_RDATA = 0;
             S2_seqi_inst.S2_RRESP = 0;
             S2_seqi_inst.S2_RLAST = 0;
             S2_seqi_inst.S2_RVALID = 1'b0;
-            S2_seqi_inst.S2_RUSER = 0;
             
             finish_item(S2_seqi_inst);
         end

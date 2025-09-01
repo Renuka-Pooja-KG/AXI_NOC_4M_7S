@@ -56,10 +56,8 @@ class M0_seq extends uvm_sequence #(M0_seq_item);
             M0_seqi_inst.M0_AWPROT = 0;
             M0_seqi_inst.M0_AWQOS = 0;
             M0_seqi_inst.M0_AWREGION = 0;
-            M0_seqi_inst.M0_AWUSER = 0;
             M0_seqi_inst.M0_WSTRB = 0;
             M0_seqi_inst.M0_WLAST = 0;
-            M0_seqi_inst.M0_WUSER = 0;
             M0_seqi_inst.M0_BREADY = 1'b1;
             M0_seqi_inst.M0_ARID = 0;
             M0_seqi_inst.M0_ARADDR = 0;
@@ -71,7 +69,6 @@ class M0_seq extends uvm_sequence #(M0_seq_item);
             M0_seqi_inst.M0_ARPROT = 0;
             M0_seqi_inst.M0_ARQOS = 0;
             M0_seqi_inst.M0_ARREGION = 0;
-            M0_seqi_inst.M0_ARUSER = 0;
             M0_seqi_inst.M0_ARVALID = 1'b0;
             M0_seqi_inst.M0_RREADY = 1'b1;
             

@@ -40,14 +40,12 @@ class S3_seq extends uvm_sequence #(S3_seq_item);
             S3_seqi_inst.S3_BID = 0;
             S3_seqi_inst.S3_BRESP = 0;
             S3_seqi_inst.S3_BVALID = 1'b0;
-            S3_seqi_inst.S3_BUSER = 0;
             S3_seqi_inst.S3_ARREADY = 1'b1;
             S3_seqi_inst.S3_RID = 0;
             S3_seqi_inst.S3_RDATA = 0;
             S3_seqi_inst.S3_RRESP = 0;
             S3_seqi_inst.S3_RLAST = 0;
             S3_seqi_inst.S3_RVALID = 1'b0;
-            S3_seqi_inst.S3_RUSER = 0;
             
             finish_item(S3_seqi_inst);
         end

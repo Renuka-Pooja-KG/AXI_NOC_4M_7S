@@ -48,10 +48,8 @@ class M2_seq extends uvm_sequence #(M2_seq_item);
             M2_seqi_inst.M2_AWPROT = 0;
             M2_seqi_inst.M2_AWQOS = 0;
             M2_seqi_inst.M2_AWREGION = 0;
-            M2_seqi_inst.M2_AWUSER = 0;
             M2_seqi_inst.M2_WSTRB = 0;
             M2_seqi_inst.M2_WLAST = 0;
-            M2_seqi_inst.M2_WUSER = 0;
             M2_seqi_inst.M2_BREADY = 1'b1;
             M2_seqi_inst.M2_ARID = 0;
             M2_seqi_inst.M2_ARADDR = 0;
@@ -63,7 +61,6 @@ class M2_seq extends uvm_sequence #(M2_seq_item);
             M2_seqi_inst.M2_ARPROT = 0;
             M2_seqi_inst.M2_ARQOS = 0;
             M2_seqi_inst.M2_ARREGION = 0;
-            M2_seqi_inst.M2_ARUSER = 0;
             M2_seqi_inst.M2_ARVALID = 1'b0;
             M2_seqi_inst.M2_RREADY = 1'b1;
             

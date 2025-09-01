@@ -40,14 +40,12 @@ class S0_seq extends uvm_sequence #(S0_seq_item);
             S0_seqi_inst.S0_BID = 0;
             S0_seqi_inst.S0_BRESP = 0;
             S0_seqi_inst.S0_BVALID = 1'b0;
-            S0_seqi_inst.S0_BUSER = 0;
             S0_seqi_inst.S0_ARREADY = 1'b1;
             S0_seqi_inst.S0_RID = 0;
             S0_seqi_inst.S0_RDATA = 0;
             S0_seqi_inst.S0_RRESP = 0;
             S0_seqi_inst.S0_RLAST = 0;
             S0_seqi_inst.S0_RVALID = 1'b0;
-            S0_seqi_inst.S0_RUSER = 0;
             
             finish_item(S0_seqi_inst);
         end

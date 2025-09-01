@@ -80,7 +80,7 @@ class axi_noc_virtual_seq extends uvm_sequence;
                 S3_seqh.scenario = 1;
                 S3_seqh.start(p_sequencer.S3_seqr);
                 
-                S4_seqh = S4_seq::type_id::type_id::create("S4_seqh");
+                S4_seqh = S4_seq::type_id::create("S4_seqh");
                 S4_seqh.scenario = 1;
                 S4_seqh.start(p_sequencer.S4_seqr);
                 

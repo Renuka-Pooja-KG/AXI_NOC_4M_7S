@@ -48,10 +48,8 @@ class M3_seq extends uvm_sequence #(M3_seq_item);
             M3_seqi_inst.M3_AWPROT = 0;
             M3_seqi_inst.M3_AWQOS = 0;
             M3_seqi_inst.M3_AWREGION = 0;
-            M3_seqi_inst.M3_AWUSER = 0;
             M3_seqi_inst.M3_WSTRB = 0;
             M3_seqi_inst.M3_WLAST = 0;
-            M3_seqi_inst.M3_WUSER = 0;
             M3_seqi_inst.M3_BREADY = 1'b1;
             M3_seqi_inst.M3_ARID = 0;
             M3_seqi_inst.M3_ARADDR = 0;
@@ -63,7 +61,6 @@ class M3_seq extends uvm_sequence #(M3_seq_item);
             M3_seqi_inst.M3_ARPROT = 0;
             M3_seqi_inst.M3_ARQOS = 0;
             M3_seqi_inst.M3_ARREGION = 0;
-            M3_seqi_inst.M3_ARUSER = 0;
             M3_seqi_inst.M3_ARVALID = 1'b0;
             M3_seqi_inst.M3_RREADY = 1'b1;
             

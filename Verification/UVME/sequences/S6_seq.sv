@@ -40,14 +40,12 @@ class S6_seq extends uvm_sequence #(S6_seq_item);
             S6_seqi_inst.S6_BID = 0;
             S6_seqi_inst.S6_BRESP = 0;
             S6_seqi_inst.S6_BVALID = 1'b0;
-            S6_seqi_inst.S6_BUSER = 0;
             S6_seqi_inst.S6_ARREADY = 1'b1;
             S6_seqi_inst.S6_RID = 0;
             S6_seqi_inst.S6_RDATA = 0;
             S6_seqi_inst.S6_RRESP = 0;
             S6_seqi_inst.S6_RLAST = 0;
             S6_seqi_inst.S6_RVALID = 1'b0;
-            S6_seqi_inst.S6_RUSER = 0;
             
             finish_item(S6_seqi_inst);
         end

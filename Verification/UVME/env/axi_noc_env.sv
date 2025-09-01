@@ -29,6 +29,8 @@ class axi_noc_env extends uvm_env;
     S5_agent s5_agent;
     S6_agent s6_agent;
     
+    // Virtual sequencer
+    virtual_sequencer virtual_seqr;
     // // ===== ENVIRONMENT COMPONENTS =====
     // // Coverage components
     // axi_master_coverage m0_coverage;
@@ -80,6 +82,9 @@ class axi_noc_env extends uvm_env;
         s5_agent = S5_agent::type_id::create("s5_agent", this);
         s6_agent = S6_agent::type_id::create("s6_agent", this);
         
+        // Build virtual sequencer
+        virtual_seqr = virtual_sequencer::type_id::create("virtual_seqr", this);
+        
         // // Build coverage components
         // m0_coverage = axi_master_coverage::type_id::create("m0_coverage", this);
         // m1_coverage = axi_master_coverage::type_id::create("m1_coverage", this);
@@ -105,67 +110,22 @@ class axi_noc_env extends uvm_env;
     // ===== CONNECT PHASE =====
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        /*
-        // Connect master monitor analysis ports to scoreboard
-        m0_agent.m0_monitor.item_collected_port.connect(noc_scoreboard.m0_analysis_export);
-        m1_agent.m1_monitor.item_collected_port.connect(noc_scoreboard.m1_analysis_export);
-        m2_agent.m2_monitor.item_collected_port.connect(noc_scoreboard.m2_analysis_export);
-        m3_agent.m3_monitor.item_collected_port.connect(noc_scoreboard.m3_analysis_export);
+
+        // Set config database for virtual sequencer to find all agent sequencers
+        uvm_config_db#(M0_sequencer)::set(this, "virtual_seqr", "M0_seqr", m0_agent.m0_sequencer);
+        uvm_config_db#(M1_sequencer)::set(this, "virtual_seqr", "M1_seqr", m1_agent.m1_sequencer);
+        uvm_config_db#(M2_sequencer)::set(this, "virtual_seqr", "M2_seqr", m2_agent.m2_sequencer);
+        uvm_config_db#(M3_sequencer)::set(this, "virtual_seqr", "M3_seqr", m3_agent.m3_sequencer);
         
-        // Connect slave monitor analysis ports to scoreboard
-        s0_agent.s0_monitor.item_collected_port.connect(noc_scoreboard.s0_analysis_export);
-        s1_agent.s1_monitor.item_collected_port.connect(noc_scoreboard.s1_analysis_export);
-        s2_agent.s2_monitor.item_collected_port.connect(noc_scoreboard.s2_analysis_export);
-        s3_agent.s3_monitor.item_collected_port.connect(noc_scoreboard.s3_analysis_export);
-        s4_agent.s4_monitor.item_collected_port.connect(noc_scoreboard.s4_analysis_export);
-        s5_agent.s5_monitor.item_collected_port.connect(noc_scoreboard.s5_analysis_export);
-        s6_agent.s6_monitor.item_collected_port.connect(noc_scoreboard.s6_analysis_export);
+        uvm_config_db#(S0_sequencer)::set(this, "virtual_seqr", "S0_seqr", s0_agent.s0_sequencer);
+        uvm_config_db#(S1_sequencer)::set(this, "virtual_seqr", "S1_seqr", s1_agent.s1_sequencer);
+        uvm_config_db#(S2_sequencer)::set(this, "virtual_seqr", "S2_seqr", s2_agent.s2_sequencer);
+        uvm_config_db#(S3_sequencer)::set(this, "virtual_seqr", "S3_seqr", s3_agent.s3_sequencer);
+        uvm_config_db#(S4_sequencer)::set(this, "virtual_seqr", "S4_seqr", s4_agent.s4_sequencer);
+        uvm_config_db#(S5_sequencer)::set(this, "virtual_seqr", "S5_seqr", s5_agent.s5_sequencer);
+        uvm_config_db#(S6_sequencer)::set(this, "virtual_seqr", "S6_seqr", s6_agent.s6_sequencer);
         
-        // Connect master monitor analysis ports to coverage
-        m0_agent.m0_monitor.item_collected_port.connect(m0_coverage.analysis_export);
-        m1_agent.m1_monitor.item_collected_port.connect(m1_coverage.analysis_export);
-        m2_agent.m2_monitor.item_collected_port.connect(m2_coverage.analysis_export);
-        m3_agent.m3_monitor.item_collected_port.connect(m3_coverage.analysis_export);
-        
-        // Connect slave monitor analysis ports to coverage
-        s0_agent.s0_monitor.item_collected_port.connect(s0_coverage.analysis_export);
-        s1_agent.s1_monitor.item_collected_port.connect(s1_coverage.analysis_export);
-        s2_agent.s2_monitor.item_collected_port.connect(s2_coverage.analysis_export);
-        s3_agent.s3_monitor.item_collected_port.connect(s3_coverage.analysis_export);
-        s4_agent.s4_monitor.item_collected_port.connect(s4_coverage.analysis_export);
-        s5_agent.s5_monitor.item_collected_port.connect(s5_coverage.analysis_export);
-        s6_agent.s6_monitor.item_collected_port.connect(s6_coverage.analysis_export);
-        
-        // Connect all monitors to system-level coverage
-        m0_agent.m0_monitor.item_collected_port.connect(noc_coverage.m0_analysis_export);
-        m1_agent.m1_monitor.item_collected_port.connect(noc_coverage.m1_analysis_export);
-        m2_agent.m2_monitor.item_collected_port.connect(noc_coverage.m2_analysis_export);
-        m3_agent.m3_monitor.item_collected_port.connect(noc_coverage.m3_analysis_export);
-        
-        s0_agent.s0_monitor.item_collected_port.connect(noc_coverage.s0_analysis_export);
-        s1_agent.s1_monitor.item_collected_port.connect(noc_coverage.s1_analysis_export);
-        s2_agent.s2_monitor.item_collected_port.connect(noc_coverage.s2_analysis_export);
-        s3_agent.s3_monitor.item_collected_port.connect(noc_coverage.s3_analysis_export);
-        s4_agent.s4_monitor.item_collected_port.connect(noc_coverage.s4_analysis_export);
-        s5_agent.s5_monitor.item_collected_port.connect(noc_coverage.s5_analysis_export);
-        s6_agent.s6_monitor.item_collected_port.connect(noc_coverage.s6_analysis_export);
-        
-        // Connect protocol checker to all monitors
-        m0_agent.m0_monitor.item_collected_port.connect(protocol_checker.m0_analysis_export);
-        m1_agent.m1_monitor.item_collected_port.connect(protocol_checker.m1_analysis_export);
-        m2_agent.m2_monitor.item_collected_port.connect(protocol_checker.m2_analysis_export);
-        m3_agent.m3_monitor.item_collected_port.connect(protocol_checker.m3_analysis_export);
-        
-        s0_agent.s0_monitor.item_collected_port.connect(protocol_checker.s0_analysis_export);
-        s1_agent.s1_monitor.item_collected_port.connect(protocol_checker.s1_analysis_export);
-        s2_agent.s2_monitor.item_collected_port.connect(protocol_checker.s2_analysis_export);
-        s3_agent.s3_monitor.item_collected_port.connect(protocol_checker.s3_analysis_export);
-        s4_agent.s4_monitor.item_collected_port.connect(protocol_checker.s4_analysis_export);
-        s5_agent.s5_monitor.item_collected_port.connect(protocol_checker.s5_analysis_export);
-        s6_agent.s6_monitor.item_collected_port.connect(protocol_checker.s6_analysis_export);
-        
-        `uvm_info("AXI_NOC_ENV", "All analysis ports connected successfully", UVM_LOW)
-        */
+        `uvm_info("AXI_NOC_ENV", "All agent sequencers configured for virtual sequencer", UVM_LOW)
     endfunction
     
     // ===== RUN PHASE =====

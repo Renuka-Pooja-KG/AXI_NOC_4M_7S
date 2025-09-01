@@ -40,14 +40,12 @@ class S4_seq extends uvm_sequence #(S4_seq_item);
             S4_seqi_inst.S4_BID = 0;
             S4_seqi_inst.S4_BRESP = 0;
             S4_seqi_inst.S4_BVALID = 1'b0;
-            S4_seqi_inst.S4_BUSER = 0;
             S4_seqi_inst.S4_ARREADY = 1'b1;
             S4_seqi_inst.S4_RID = 0;
             S4_seqi_inst.S4_RDATA = 0;
             S4_seqi_inst.S4_RRESP = 0;
             S4_seqi_inst.S4_RLAST = 0;
             S4_seqi_inst.S4_RVALID = 1'b0;
-            S4_seqi_inst.S4_RUSER = 0;
             
             finish_item(S4_seqi_inst);
         end

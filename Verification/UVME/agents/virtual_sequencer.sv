@@ -41,44 +41,44 @@ class virtual_sequencer extends uvm_sequencer;
     endfunction
     
     //--- Connect Phase -------//
-    // function void connect_phase(uvm_phase phase);
-    //     super.connect_phase(phase);
+    function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
         
-    //     // Get references to sub-sequencers from config database
-    //     if (!uvm_config_db#(M0_sequencer)::get(this, "", "M0_seqr", M0_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "M0_sequencer not found")
+        // Get references to sub-sequencers from config database
+        if (!uvm_config_db#(M0_sequencer)::get(this, "", "M0_seqr", M0_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "M0_sequencer not found")
             
-    //     if (!uvm_config_db#(M1_sequencer)::get(this, "", "M1_seqr", M1_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "M1_sequencer not found")
+        if (!uvm_config_db#(M1_sequencer)::get(this, "", "M1_seqr", M1_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "M1_sequencer not found")
             
-    //     if (!uvm_config_db#(M2_sequencer)::get(this, "", "M2_seqr", M2_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "M2_sequencer not found")
+        if (!uvm_config_db#(M2_sequencer)::get(this, "", "M2_seqr", M2_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "M2_sequencer not found")
             
-    //     if (!uvm_config_db#(M3_sequencer)::get(this, "", "M3_seqr", M3_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "M3_sequencer not found")
+        if (!uvm_config_db#(M3_sequencer)::get(this, "", "M3_seqr", M3_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "M3_sequencer not found")
             
-    //     if (!uvm_config_db#(S0_sequencer)::get(this, "", "S0_seqr", S0_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S0_sequencer not found")
+        if (!uvm_config_db#(S0_sequencer)::get(this, "", "S0_seqr", S0_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S0_sequencer not found")
             
-    //     if (!uvm_config_db#(S1_sequencer)::get(this, "", "S1_seqr", S1_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S1_sequencer not found")
+        if (!uvm_config_db#(S1_sequencer)::get(this, "", "S1_seqr", S1_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S1_sequencer not found")
             
-    //     if (!uvm_config_db#(S2_sequencer)::get(this, "", "S2_seqr", S2_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S2_sequencer not found")
+        if (!uvm_config_db#(S2_sequencer)::get(this, "", "S2_seqr", S2_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S2_sequencer not found")
             
-    //     if (!uvm_config_db#(S3_sequencer)::get(this, "", "S3_seqr", S3_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S3_sequencer not found")
+        if (!uvm_config_db#(S3_sequencer)::get(this, "", "S3_seqr", S3_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S3_sequencer not found")
             
-    //     if (!uvm_config_db#(S4_sequencer)::get(this, "", "S4_seqr", S4_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S4_sequencer not found")
+        if (!uvm_config_db#(S4_sequencer)::get(this, "", "S4_seqr", S4_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S4_sequencer not found")
             
-    //     if (!uvm_config_db#(S5_sequencer)::get(this, "", "S5_seqr", S5_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S5_sequencer not found")
+        if (!uvm_config_db#(S5_sequencer)::get(this, "", "S5_seqr", S5_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S5_sequencer not found")
             
-    //     if (!uvm_config_db#(S6_sequencer)::get(this, "", "S6_seqr", S6_seqr))
-    //         `uvm_fatal("VIRTUAL_SEQ", "S6_sequencer not found")
+        if (!uvm_config_db#(S6_sequencer)::get(this, "", "S6_seqr", S6_seqr))
+            `uvm_fatal("VIRTUAL_SEQ", "S6_sequencer not found")
             
-    //     `uvm_info("VIRTUAL_SEQ", "All sub-sequencers connected successfully", UVM_LOW)
-    // endfunction
+        `uvm_info("VIRTUAL_SEQ", "All sub-sequencers connected successfully", UVM_LOW)
+    endfunction
     
 endclass
