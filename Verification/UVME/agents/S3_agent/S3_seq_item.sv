@@ -185,8 +185,8 @@ class S3_seq_item extends uvm_sequence_item;
     // UVM field macros for automation
     `uvm_object_utils_begin(S3_seq_item)
         `uvm_field_int(s3_transaction_id, UVM_ALL_ON)
-        `uvm_field_int(master_id, UVM_ALL_ON)
-        `uvm_field_int(trans_type, UVM_ALL_ON)
+        `uvm_field_enum(master_id, UVM_ALL_ON)
+        `uvm_field_enum(trans_type, UVM_ALL_ON)
         
         // Write Address Channel
         `uvm_field_int(S3_AWID, UVM_ALL_ON)

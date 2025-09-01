@@ -202,8 +202,8 @@ class M1_seq_item extends uvm_sequence_item;
     // UVM Field Macros for automatic copy, compare, print, etc.
     `uvm_object_utils_begin(M1_seq_item)
         `uvm_field_int(m1_transaction_id, UVM_ALL_ON)
-        `uvm_field_int(slave_id, UVM_ALL_ON)
-        `uvm_field_int(trans_type, UVM_ALL_ON)
+        `uvm_field_enum(slave_id, UVM_ALL_ON)
+        `uvm_field_enum(trans_type, UVM_ALL_ON)
         `uvm_field_int(M1_AWID, UVM_ALL_ON)
         `uvm_field_int(M1_AWADDR, UVM_ALL_ON)
         `uvm_field_int(M1_AWLEN, UVM_ALL_ON)

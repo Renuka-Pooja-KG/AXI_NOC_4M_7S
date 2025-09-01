@@ -9,6 +9,9 @@
 
 // Testbench top module
 module axi_noc_tb_top;
+
+    // Import UVM package for global UVM functions
+    import uvm_pkg::*;
     
     // ===== CLOCK AND RESET GENERATION =====
     logic ACLK;
