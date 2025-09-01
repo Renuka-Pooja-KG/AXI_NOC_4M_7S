@@ -294,11 +294,11 @@ class M2_seq_item extends uvm_sequence_item;
     // Set burst parameters using package constants
     function void set_burst_parameters(int length, axi_burst_type_e burst, int size);
         if (trans_type == AXI_WRITE) {
-            M2_AWLEN = set_axi_length(length);  // Use package function
+            M2_AWLEN = length - 1;  // Convert to 0-based AXI length
             M2_AWBURST = burst;
             M2_AWSIZE = $clog2(size);
         } else {
-            M2_ARLEN = set_axi_length(length);  // Use package function
+            M2_ARLEN = length - 1;  // Convert to 0-based AXI length
             M2_ARBURST = burst;
             M2_ARSIZE = $clog2(size);
         }
