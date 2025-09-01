@@ -272,11 +272,11 @@ module axi_noc_tb_top;
         .S0_AWSIZE(slave0_if.S0_AWSIZE),
         .S0_AWBURST(slave0_if.S0_AWBURST),
         .S0_AWLOCK(slave0_if.S0_AWLOCK),
-        .S0_AWCACHE(slave0_if.S0_AWCACHE),
+       // .S0_AWCACHE(slave0_if.S0_AWCACHE),
         .S0_AWPROT(slave0_if.S0_AWPROT),
         .S0_AWQOS(slave0_if.S0_AWQOS),
         .S0_AWREGION(slave0_if.S0_AWREGION),
-        .S0_AWUSER(slave0_if.S0_AWUSER),
+       // .S0_AWUSER(slave0_if.S0_AWUSER),
         .S0_AWVALID(slave0_if.S0_AWVALID),
         .S0_AWREADY(slave0_if.S0_AWREADY),
         
@@ -673,20 +673,20 @@ module axi_noc_tb_top;
     always @(posedge ACLK) begin
         if (ARESETn) begin
             // Monitor master activity
-            if (master0_if.awvalid && master0_if.awready) begin
+            if (master0_if.M0_AWVALID && master0_if.M0_AWREADY) begin
                 $display("Time %0t: M0 Write Address - ID: %0d, Addr: 0x%h, Burst: %0d", 
-                         $time, master0_if.awid, master0_if.awaddr, master0_if.awburst);
+                         $time, master0_if.M0_AWID, master0_if.M0_AWADDR, master0_if.M0_AWBURST);
             end
             
-            if (master1_if.awvalid && master1_if.awready) begin
+            if (master1_if.M1_AWVALID && master1_if.M1_AWREADY) begin
                 $display("Time %0t: M1 Write Address - ID: %0d, Addr: 0x%h, Burst: %0d", 
-                         $time, master1_if.awid, master1_if.awaddr, master1_if.awburst);
+                         $time, master1_if.M1_AWID, master1_if.M1_AWADDR, master1_if.M1_AWBURST);
             end
             
             // Monitor slave responses
-            if (slave0_if.bvalid && slave0_if.bready) begin
+            if (slave0_if.S0_BVALID && slave0_if.S0_BREADY) begin
                 $display("Time %0t: S0 Write Response - ID: %0d, Resp: %0d", 
-                         $time, slave0_if.bid, slave0_if.bresp);
+                         $time, slave0_if.S0_BID, slave0_if.S0_BRESP);
             end
         end
     end
