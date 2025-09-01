@@ -1,9 +1,8 @@
 //=============================================================================
 // M1 Agent Sequence Item Class
 //=============================================================================
-// Standalone sequence item for Master 1 with full access to all slaves
+// Standalone sequence item for Master 1 with limited access to S1, S3, S4
 // Extends uvm_sequence_item directly
-
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
@@ -15,7 +14,7 @@ class M1_seq_item extends uvm_sequence_item;
     
     // M1-specific transaction identification
     rand int unsigned m1_transaction_id;  // Unique transaction ID for M1
-    rand axi_slave_id_e slave_id;         // Target slave (0-6)
+    rand axi_slave_id_e slave_id;         // Target slave (1, 3, 4 only)
     
     // Transaction type
     rand axi_trans_type_e trans_type;
@@ -73,27 +72,9 @@ class M1_seq_item extends uvm_sequence_item;
     rand bit [AXI_DATA_WIDTH-1:0]   burst_data[];   // Array for burst data
     rand bit [AXI_STRB_WIDTH-1:0]   burst_strobe[]; // Array for burst strobes
     
-    // ===== STATUS AND TIMING =====
-    bit                             transaction_complete;
-    time                            start_time;
-    time                            end_time;
-    
-    // M1-specific transaction statistics
-    int unsigned m1_total_transactions;
-    int unsigned m1_write_transactions;
-    int unsigned m1_read_transactions;
-    int unsigned m1_burst_transactions;
-    int unsigned m1_single_transactions;
-    
-    // M1-specific performance metrics
-    time m1_avg_response_time;
-    time m1_min_response_time;
-    time m1_max_response_time;
-    
     // Constraints
     constraint slave_id_c {
-        slave_id inside {AXI_SLAVE_0, AXI_SLAVE_1, AXI_SLAVE_2, AXI_SLAVE_3, 
-                        AXI_SLAVE_4, AXI_SLAVE_5, AXI_SLAVE_6};  // M1 can access all slaves
+        slave_id inside {AXI_SLAVE_1, AXI_SLAVE_3, AXI_SLAVE_4};  // M1 can only access S1, S3, S4
     }
     
     constraint M1_awid_c {
@@ -170,23 +151,11 @@ class M1_seq_item extends uvm_sequence_item;
     
     // Address range constraints based on slave using package constants
     constraint address_range_c {
-        if (slave_id == AXI_SLAVE_0) {
-            if (trans_type == AXI_WRITE) {
-                M1_AWADDR inside {[SLAVE_0_BASE_ADDR:SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            } else {
-                M1_ARADDR inside {[SLAVE_0_BASE_ADDR:SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            }
-        } else if (slave_id == AXI_SLAVE_1) {
+        if (slave_id == AXI_SLAVE_1) {
             if (trans_type == AXI_WRITE) {
                 M1_AWADDR inside {[SLAVE_1_BASE_ADDR:SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
             } else {
                 M1_ARADDR inside {[SLAVE_1_BASE_ADDR:SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            }
-        } else if (slave_id == AXI_SLAVE_2) {
-            if (trans_type == AXI_WRITE) {
-                M1_AWADDR inside {[SLAVE_2_BASE_ADDR:SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            } else {
-                M1_ARADDR inside {[SLAVE_2_BASE_ADDR:SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
             }
         } else if (slave_id == AXI_SLAVE_3) {
             if (trans_type == AXI_WRITE) {
@@ -199,18 +168,6 @@ class M1_seq_item extends uvm_sequence_item;
                 M1_AWADDR inside {[SLAVE_4_BASE_ADDR:SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
             } else {
                 M1_ARADDR inside {[SLAVE_4_BASE_ADDR:SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            }
-        } else if (slave_id == AXI_SLAVE_5) {
-            if (trans_type == AXI_WRITE) {
-                M1_AWADDR inside {[SLAVE_5_BASE_ADDR:SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            } else {
-                M1_ARADDR inside {[SLAVE_5_BASE_ADDR:SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            }
-        } else if (slave_id == AXI_SLAVE_6) {
-            if (trans_type == AXI_WRITE) {
-                M1_AWADDR inside {[SLAVE_6_BASE_ADDR:SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            } else {
-                M1_ARADDR inside {[SLAVE_6_BASE_ADDR:SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
             }
         }
     }
@@ -237,248 +194,21 @@ class M1_seq_item extends uvm_sequence_item;
     // Constructor
     function new(string name = "M1_seq_item");
         super.new(name);
-        /*
-        m1_transaction_id = 0;
-        m1_total_transactions = 0;
-        m1_write_transactions = 0;
-        m1_read_transactions = 0;
-        m1_burst_transactions = 0;
-        m1_single_transactions = 0;
-        m1_avg_response_time = 0;
-        m1_min_response_time = 0;
-        m1_max_response_time = 0;
-        transaction_complete = 0;
-        start_time = 0;
-        end_time = 0;
-        */        
         // Initialize arrays
         burst_data = new[1];
         burst_strobe = new[1];
     endfunction
     
-    // M1-specific methods
-    /*
-    // Set M1 transaction ID
-    function void set_m1_transaction_id(int id);
-        m1_transaction_id = id;
-    endfunction
-    
-    // Get M1 transaction ID
-    function int get_m1_transaction_id();
-        return m1_transaction_id;
-    endfunction
-    
-    // Set slave ID
-    function void set_slave_id(axi_slave_id_e id);
-        slave_id = id;
-    endfunction
-    
-    // Set transaction type
-    // function void set_transaction_type(axi_trans_type_e type);
-    //     trans_type = type;
-    // endfunction
-    
-    // M1-specific slave selection methods
-    function void set_random_slave();
-        randcase
-            1: slave_id = AXI_SLAVE_0;  // S0
-            1: slave_id = AXI_SLAVE_1;  // S1
-            1: slave_id = AXI_SLAVE_2;  // S2
-            1: slave_id = AXI_SLAVE_3;  // S3
-            1: slave_id = AXI_SLAVE_4;  // S4
-            1: slave_id = AXI_SLAVE_5;  // S5
-            1: slave_id = AXI_SLAVE_6;  // S6
-        endcase
-    endfunction
-    
-    // Set burst parameters using package constants
-    function void set_burst_parameters(int length, axi_burst_type_e burst, int size);
-        if (trans_type == AXI_WRITE) {
-            M1_AWLEN = length - 1;  // Convert to 0-based AXI length
-            M1_AWBURST = burst;
-            M1_AWSIZE = $clog2(size);
-        } else {
-            M1_ARLEN = length - 1;  // Convert to 0-based AXI length
-            M1_ARBURST = burst;
-            M1_ARSIZE = $clog2(size);
-        }
-        
-        // Resize arrays
-        if (trans_type == AXI_WRITE) {
-            burst_data = new[length];
-            burst_strobe = new[length];
-        } else {
-            burst_data = new[length];
-        }
-    endfunction
-    
-    // Set address
-    function void set_address(bit [AXI_ADDR_WIDTH-1:0] addr);
-        if (trans_type == AXI_WRITE) 
-            M1_AWADDR = addr;
-        else 
-            M1_ARADDR = addr;
-    endfunction
-    
-    // Set burst data
-    function void set_burst_data(int index, bit [AXI_DATA_WIDTH-1:0] data);
-        if (index < burst_data.size()) 
-            burst_data[index] = data;
-    endfunction
-    
-    // Set burst strobe
-    function void set_burst_strobe(int index, bit [AXI_STRB_WIDTH-1:0] strobe);
-        if (index < burst_strobe.size()) 
-            burst_strobe[index] = strobe;
-    endfunction
-    
-    // M1-specific transaction type methods
-    function void set_write_transaction();
-        trans_type = AXI_WRITE;
-        m1_total_transactions++;
-        m1_write_transactions++;
-    endfunction
-    
-    function void set_read_transaction();
-        trans_type = AXI_READ;
-        m1_total_transactions++;
-        m1_read_transactions++;
-    endfunction
-    
-    // M1-specific burst configuration methods
-    function void set_single_transfer();
-        if (trans_type == AXI_WRITE) {
-            M1_AWLEN = 0;  // Single transfer
-            M1_AWBURST = AXI_INCR;
-        } else {
-            M1_ARLEN = 0;  // Single transfer
-            M1_ARBURST = AXI_INCR;
-        }
-        m1_single_transactions++;
-    endfunction
-    
-    function void set_burst_transfer(int length, axi_burst_type_e burst_type);
-        if (length > 1) {
-            set_burst_parameters(length, burst_type, 4); // Default 4-byte transfers
-            m1_burst_transactions++;
-        } else {
-            set_single_transfer();
-        }
-    endfunction
-    
-    // M1-specific address generation methods using package constants
-    function void set_random_address_in_slave_range(axi_slave_id_e slave);
-        set_slave_id(slave);
-        if (slave == AXI_SLAVE_0) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_0_BASE_ADDR, SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_0_BASE_ADDR, SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        } else if (slave == AXI_SLAVE_1) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_1_BASE_ADDR, SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_1_BASE_ADDR, SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        } else if (slave == AXI_SLAVE_2) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_2_BASE_ADDR, SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_2_BASE_ADDR, SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        } else if (slave == AXI_SLAVE_3) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_3_BASE_ADDR, SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_3_BASE_ADDR, SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        } else if (slave == AXI_SLAVE_4) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_4_BASE_ADDR, SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_4_BASE_ADDR, SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        } else if (slave == AXI_SLAVE_5) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_5_BASE_ADDR, SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_5_BASE_ADDR, SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        } else if (slave == AXI_SLAVE_6) {
-            if (trans_type == AXI_WRITE) M1_AWADDR = $urandom_range(SLAVE_6_BASE_ADDR, SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-            else M1_ARADDR = $urandom_range(SLAVE_6_BASE_ADDR, SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1);
-        }
-    endfunction
-    
-    // Check if transaction is complete
-    function bit is_complete();
-        return transaction_complete;
-    endfunction
-    
-    // Mark transaction as complete
-    function void mark_complete();
-        transaction_complete = 1;
-        end_time = $time;
-    endfunction
-    
-    // Get transaction duration
-    function time get_duration();
-        return end_time - start_time;
-    endfunction
-    
-    // M1-specific performance tracking
-    function void update_performance_metrics(time response_time);
-        if (m1_min_response_time == 0 || response_time < m1_min_response_time) 
-            m1_min_response_time = response_time;
-        if (response_time > m1_max_response_time) 
-            m1_max_response_time = response_time;
-        m1_avg_response_time = ((m1_avg_response_time * (m1_total_transactions - 1)) + response_time) / m1_total_transactions;
-    endfunction
-    
-    // M1-specific transaction validation using package functions
-    function bit is_valid_m1_transaction();
-        // Check if slave ID is valid
-        if (slave_id < AXI_SLAVE_0 || slave_id > AXI_SLAVE_6) return 0;
-        
-        // Check address alignment using package function
-        if (trans_type == AXI_WRITE) {
-            if (!is_address_aligned(M1_AWADDR, M1_AWSIZE)) return 0;
-        } else {
-            if (!is_address_aligned(M1_ARADDR, M1_ARSIZE)) return 0;
-        }
-        
-        // Check burst length
-        if (trans_type == AXI_WRITE) {
-            if (M1_AWLEN < 0 || M1_AWLEN >= AXI_MAX_BURST_LENGTH) return 0;
-        } else {
-            if (M1_ARLEN < 0 || M1_ARLEN >= AXI_MAX_BURST_LENGTH) return 0;
-        }
-        
-        return 1;
-    endfunction
-    
-    // Get transaction info string
-    function string get_transaction_info();
-        if (trans_type == AXI_WRITE) 
-            return $sformatf("M1->S%0d WRITE ID=%0d Len=%0d Addr=0x%08x Burst=%s", 
-                            slave_id, M1_AWID, get_burst_length(M1_AWLEN), M1_AWADDR, 
-                            M1_AWBURST.name());
-        else 
-            return $sformatf("M1->S%0d READ ID=%0d Len=%0d Addr=0x%08x Burst=%s", 
-                            slave_id, M1_ARID, get_burst_length(M1_ARLEN), M1_ARADDR, 
-                            M1_ARBURST.name());
-    endfunction
-    
-    // M1-specific transaction info
-    function string get_m1_transaction_info();
-        string info = $sformatf("M1_TX%0d: ", m1_transaction_id);
-        info = {info, get_transaction_info()};
-        info = {info, $sformatf(" | Stats: W=%0d, R=%0d, Total=%0d", 
-                                m1_write_transactions, m1_read_transactions, m1_total_transactions)};
-        return info;
-    endfunction
-    
-    // M1-specific statistics summary
-    function string get_m1_statistics_summary();
-        return $sformatf("M1 Statistics: Total=%0d, Writes=%0d, Reads=%0d, Bursts=%0d, Singles=%0d, Avg_Response=%0t, Min_Response=%0t, Max_Response=%0t",
-                        m1_total_transactions, m1_write_transactions, m1_read_transactions, 
-                        m1_burst_transactions, m1_single_transactions,
-                        m1_avg_response_time, m1_min_response_time, m1_max_response_time);
-    endfunction
-    */
     // UVM Field Macros for automatic copy, compare, print, etc.
     `uvm_object_utils_begin(M1_seq_item)
         `uvm_field_int(m1_transaction_id, UVM_ALL_ON)
-        `uvm_field_enum(slave_id, axi_slave_id_e, UVM_ALL_ON)
-        `uvm_field_enum(trans_type, axi_trans_type_e, UVM_ALL_ON)
+        `uvm_field_int(slave_id, UVM_ALL_ON)
+        `uvm_field_int(trans_type, UVM_ALL_ON)
         `uvm_field_int(M1_AWID, UVM_ALL_ON)
         `uvm_field_int(M1_AWADDR, UVM_ALL_ON)
         `uvm_field_int(M1_AWLEN, UVM_ALL_ON)
         `uvm_field_int(M1_AWSIZE, UVM_ALL_ON)
-        `uvm_field_enum(M1_AWBURST, axi_burst_type_e, UVM_ALL_ON)
+        `uvm_field_int(M1_AWBURST, UVM_ALL_ON)
         `uvm_field_int(M1_AWLOCK, UVM_ALL_ON)
         `uvm_field_int(M1_AWCACHE, UVM_ALL_ON)
         `uvm_field_int(M1_AWPROT, UVM_ALL_ON)
@@ -493,7 +223,7 @@ class M1_seq_item extends uvm_sequence_item;
         `uvm_field_int(M1_ARADDR, UVM_ALL_ON)
         `uvm_field_int(M1_ARLEN, UVM_ALL_ON)
         `uvm_field_int(M1_ARSIZE, UVM_ALL_ON)
-        `uvm_field_enum(M1_ARBURST, axi_burst_type_e, UVM_ALL_ON)
+        `uvm_field_int(M1_ARBURST, UVM_ALL_ON)
         `uvm_field_int(M1_ARLOCK, UVM_ALL_ON)
         `uvm_field_int(M1_ARCACHE, UVM_ALL_ON)
         `uvm_field_int(M1_ARPROT, UVM_ALL_ON)
@@ -502,17 +232,6 @@ class M1_seq_item extends uvm_sequence_item;
         `uvm_field_int(M1_ARVALID, UVM_ALL_ON)
         `uvm_field_array_int(burst_data, UVM_ALL_ON)
         `uvm_field_array_int(burst_strobe, UVM_ALL_ON)
-        `uvm_field_int(transaction_complete, UVM_ALL_ON)
-        `uvm_field_int(start_time, UVM_ALL_ON)
-        `uvm_field_int(end_time, UVM_ALL_ON)
-        `uvm_field_int(m1_total_transactions, UVM_ALL_ON)
-        `uvm_field_int(m1_write_transactions, UVM_ALL_ON)
-        `uvm_field_int(m1_read_transactions, UVM_ALL_ON)
-        `uvm_field_int(m1_burst_transactions, UVM_ALL_ON)
-        `uvm_field_int(m1_single_transactions, UVM_ALL_ON)
-        `uvm_field_int(m1_avg_response_time, UVM_ALL_ON)
-        `uvm_field_int(m1_min_response_time, UVM_ALL_ON)
-        `uvm_field_int(m1_max_response_time, UVM_ALL_ON)
     `uvm_object_utils_end
     
 endclass : M1_seq_item

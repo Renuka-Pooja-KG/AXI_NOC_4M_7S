@@ -124,7 +124,7 @@ package axi_noc_pkg;
   `include "env/axi_noc_env.sv"
   
   // ===== TESTBENCH TOP =====
-  `include "top/axi_noc_tb_top.sv"
+  //`include "top/axi_noc_tb_top.sv"
   
   // ===== TEST FILES =====
   // Base test class
