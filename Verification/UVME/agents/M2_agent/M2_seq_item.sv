@@ -170,47 +170,68 @@ class M2_seq_item extends uvm_sequence_item;
     
     // Address range constraints based on slave using package constants
     constraint address_range_c {
-        if (slave_id == AXI_SLAVE_0) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_0_BASE_ADDR:SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_0_BASE_ADDR:SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end else if (slave_id == AXI_SLAVE_1) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_1_BASE_ADDR:SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_1_BASE_ADDR:SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end else if (slave_id == AXI_SLAVE_2) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_2_BASE_ADDR:SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_2_BASE_ADDR:SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end else if (slave_id == AXI_SLAVE_3) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_3_BASE_ADDR:SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_3_BASE_ADDR:SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end else if (slave_id == AXI_SLAVE_4) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_4_BASE_ADDR:SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_4_BASE_ADDR:SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end else if (slave_id == AXI_SLAVE_5) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_5_BASE_ADDR:SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_5_BASE_ADDR:SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end else if (slave_id == AXI_SLAVE_6) begin
-            if (trans_type == AXI_WRITE) M2_AWADDR inside {[SLAVE_6_BASE_ADDR:SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-            else M2_ARADDR inside {[SLAVE_6_BASE_ADDR:SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
-        end
+        if (slave_id == AXI_SLAVE_0) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_0_BASE_ADDR:SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_0_BASE_ADDR:SLAVE_0_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        } else if (slave_id == AXI_SLAVE_1) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_1_BASE_ADDR:SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_1_BASE_ADDR:SLAVE_1_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        } else if (slave_id == AXI_SLAVE_2) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_2_BASE_ADDR:SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_2_BASE_ADDR:SLAVE_2_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        } else if (slave_id == AXI_SLAVE_3) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_3_BASE_ADDR:SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_3_BASE_ADDR:SLAVE_3_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        } else if (slave_id == AXI_SLAVE_4) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_4_BASE_ADDR:SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_4_BASE_ADDR:SLAVE_4_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        } else if (slave_id == AXI_SLAVE_5) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_5_BASE_ADDR:SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_5_BASE_ADDR:SLAVE_5_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        } else if (slave_id == AXI_SLAVE_6) {
+            if (trans_type == AXI_WRITE) {
+                M2_AWADDR inside {[SLAVE_6_BASE_ADDR:SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            } else {
+                M2_ARADDR inside {[SLAVE_6_BASE_ADDR:SLAVE_6_BASE_ADDR+SLAVE_ADDR_RANGE_SIZE-1]};
+            }
+        }
     }
     
     // Address alignment constraints using package function
     constraint address_alignment_c {
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             M2_AWADDR % (1 << M2_AWSIZE) == 0;
-        end else begin
+        } else {
             M2_ARADDR % (1 << M2_ARSIZE) == 0;
-        end
+        }
     }
     
     // Burst data array size constraint
     constraint burst_data_size_c {
-        if (trans_type == AXI_WRITE) begin
+        if (trans_type == AXI_WRITE) {
             burst_data.size() == get_burst_length(M2_AWLEN);
             burst_strobe.size() == get_burst_length(M2_AWLEN);
-        end else begin
+        } else {
             burst_data.size() == get_burst_length(M2_ARLEN);
-        end
+        }
     }
     
     // Constructor
@@ -489,16 +510,16 @@ class M2_seq_item extends uvm_sequence_item;
         `uvm_field_array_int(burst_data, UVM_ALL_ON)
         `uvm_field_array_int(burst_strobe, UVM_ALL_ON)
         `uvm_field_int(transaction_complete, UVM_ALL_ON)
-        `uvm_field_time(start_time, UVM_ALL_ON)
-        `uvm_field_time(end_time, UVM_ALL_ON)
+        `uvm_field_int(start_time, UVM_ALL_ON)
+        `uvm_field_int(end_time, UVM_ALL_ON)
         `uvm_field_int(m2_total_transactions, UVM_ALL_ON)
         `uvm_field_int(m2_write_transactions, UVM_ALL_ON)
         `uvm_field_int(m2_read_transactions, UVM_ALL_ON)
         `uvm_field_int(m2_burst_transactions, UVM_ALL_ON)
         `uvm_field_int(m2_single_transactions, UVM_ALL_ON)
-        `uvm_field_time(m2_avg_response_time, UVM_ALL_ON)
-        `uvm_field_time(m2_min_response_time, UVM_ALL_ON)
-        `uvm_field_time(m2_max_response_time, UVM_ALL_ON)
+        `uvm_field_int(m2_avg_response_time, UVM_ALL_ON)
+        `uvm_field_int(m2_min_response_time, UVM_ALL_ON)
+        `uvm_field_int(m2_max_response_time, UVM_ALL_ON)
     `uvm_object_utils_end
     
 endclass : M2_seq_item

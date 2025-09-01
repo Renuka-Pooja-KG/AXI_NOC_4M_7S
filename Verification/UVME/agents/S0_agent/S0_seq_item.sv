@@ -268,8 +268,8 @@ class S0_seq_item extends uvm_sequence_item;
         
         // Status and timing
         `uvm_field_int(transaction_complete, UVM_ALL_ON)
-        `uvm_field_time(start_time, UVM_ALL_ON)
-        `uvm_field_time(end_time, UVM_ALL_ON)
+        `uvm_field_int(start_time, UVM_ALL_ON)
+        `uvm_field_int(end_time, UVM_ALL_ON)
     `uvm_object_utils_end
     
 endclass : S0_seq_item

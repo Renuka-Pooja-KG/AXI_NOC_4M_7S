@@ -81,8 +81,8 @@ class axi_master_transaction extends uvm_sequence_item;
         `uvm_field_int(response, UVM_ALL_ON)
         `uvm_field_array_int(read_data, UVM_ALL_ON)
         `uvm_field_int(transaction_done, UVM_ALL_ON)
-        `uvm_field_time(start_time, UVM_ALL_ON)
-        `uvm_field_time(end_time, UVM_ALL_ON)
+        `uvm_field_int(start_time, UVM_ALL_ON)
+        `uvm_field_int(end_time, UVM_ALL_ON)
     `uvm_object_utils_end
     
 endclass
