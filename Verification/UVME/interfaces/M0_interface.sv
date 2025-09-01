@@ -7,10 +7,14 @@
 // Note: This interface is specifically for M0; slave interfaces will be created separately
 // Features: Clocking block for synchronized signal access at posedge ACLK
 
+`ifndef M0_INTERFACE_SV
+`define M0_INTERFACE_SV
+
 interface M0_interface(
     input logic ACLK,
     input logic ARESETn
 );
+    import axi_common_types_pkg::*;
     
         // ===== CLOCK AND RESET =====
     

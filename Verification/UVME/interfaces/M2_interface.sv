@@ -11,6 +11,7 @@ interface M2_interface(
     input logic ACLK,
     input logic ARESETn
 );
+    import axi_common_types_pkg::*;
     
     // ===== WRITE ADDRESS CHANNEL (AW) =====
     logic [AXI_ID_WIDTH-1:0]     M2_AWID;           // Write address ID

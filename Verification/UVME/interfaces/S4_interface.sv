@@ -14,6 +14,7 @@ interface S4_interface(
     input logic ACLK,
     input logic ARESETn
 );
+    import axi_common_types_pkg::*;
     
     // ===== WRITE ADDRESS CHANNEL (AW) =====
     // S4 receives these signals from masters
