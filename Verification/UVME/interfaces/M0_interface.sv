@@ -142,19 +142,19 @@ interface M0_interface(
         M0_AWLOCK = '0;
         M0_AWSIZE = '0;
         M0_AWBURST = '0;
-        M0_AWCACHE = '0;
+       // M0_AWCACHE = '0;
         M0_AWPROT = '0;
         M0_AWVALID = '0;
         M0_AWQOS = '0;
         M0_AWREGION = '0;
-        M0_AWUSER = '0;
+       // M0_AWUSER = '0;
         
         // Write Data Channel
         M0_WDATA = '0;
         M0_WSTRB = '0;
         M0_WLAST = '0;
         M0_WVALID = '0;
-        M0_WUSER = '0;
+       // M0_WUSER = '0;
         
         // Write Response Channel
         M0_BREADY = '0;
@@ -171,7 +171,7 @@ interface M0_interface(
         M0_ARVALID = '0;
         M0_ARQOS = '0;
         M0_ARREGION = '0;
-        M0_ARUSER = '0;
+      //  M0_ARUSER = '0;
         
         // Read Data Channel
         M0_RREADY = '0;

@@ -139,48 +139,48 @@ interface S4_interface(
     // Task to initialize all signals to default values
     task automatic init_signals();
         // Write Address Channel - S4 receives these, initialize to safe defaults
-        S4_AWID = '0;
-        S4_AWADDR = '0;
-        S4_AWLEN = '0;
-        S4_AWLOCK = '0;
-        S4_AWSIZE = '0;
-        S4_AWBURST = '0;
-        S4_AWCACHE = '0;
-        S4_AWPROT = '0;
-        S4_AWVALID = '0;
-        S4_AWQOS = '0;
-        S4_AWREGION = '0;
-        S4_AWUSER = '0;
+        // S4_AWID = '0;
+        // S4_AWADDR = '0;
+        // S4_AWLEN = '0;
+        // S4_AWLOCK = '0;
+        // S4_AWSIZE = '0;
+        // S4_AWBURST = '0;
+        // S4_AWCACHE = '0;
+        // S4_AWPROT = '0;
+        // S4_AWVALID = '0;
+        // S4_AWQOS = '0;
+        // S4_AWREGION = '0;
+        // S4_AWUSER = '0;
         S4_AWREADY = '0;  // S4 drives this
         
         // Write Data Channel - S4 receives these, initialize to safe defaults
-        S4_WDATA = '0;
-        S4_WSTRB = '0;
-        S4_WLAST = '0;
-        S4_WVALID = '0;
-        S4_WUSER = '0;
+        // S4_WDATA = '0;
+        // S4_WSTRB = '0;
+        // S4_WLAST = '0;
+        // S4_WVALID = '0;
+        // S4_WUSER = '0;
         S4_WREADY = '0;  // S4 drives this
         
         // Write Response Channel - S4 drives these signals
         S4_BID = '0;
         S4_BRESP = '0;
         S4_BVALID = '0;
-        S4_BREADY = '0;  // S4 receives this
-        S4_BUSER = '0;
+        //S4_BREADY = '0;  // S4 receives this
+        //S4_BUSER = '0;
         
         // Read Address Channel - S4 receives these, initialize to safe defaults
-        S4_ARID = '0;
-        S4_ARADDR = '0;
-        S4_ARLEN = '0;
-        S4_ARLOCK = '0;
-        S4_ARSIZE = '0;
-        S4_ARBURST = '0;
-        S4_ARCACHE = '0;
-        S4_ARPROT = '0;
-        S4_ARVALID = '0;
-        S4_ARQOS = '0;
-        S4_ARREGION = '0;
-        S4_ARUSER = '0;
+        // S4_ARID = '0;
+        // S4_ARADDR = '0;
+        // S4_ARLEN = '0;
+        // S4_ARLOCK = '0;
+        // S4_ARSIZE = '0;
+        // S4_ARBURST = '0;
+        // S4_ARCACHE = '0;
+        // S4_ARPROT = '0;
+        // S4_ARVALID = '0;
+        // S4_ARQOS = '0;
+        // S4_ARREGION = '0;
+        // S4_ARUSER = '0;
         S4_ARREADY = '0;  // S4 drives this
         
         // Read Data Channel - S4 drives these signals
@@ -189,8 +189,8 @@ interface S4_interface(
         S4_RRESP = '0;
         S4_RLAST = '0;
         S4_RVALID = '0;
-        S4_RREADY = '0;  // S4 receives this
-        S4_RUSER = '0;
+        // S4_RREADY = '0;  // S4 receives this
+        // S4_RUSER = '0;
     endtask
     
     // Task to wait for clock edge

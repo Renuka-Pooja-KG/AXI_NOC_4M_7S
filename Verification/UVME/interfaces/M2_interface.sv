@@ -140,19 +140,19 @@ interface M2_interface(
         M2_AWLOCK = '0;
         M2_AWSIZE = '0;
         M2_AWBURST = '0;
-        M2_AWCACHE = '0;
+        //M2_AWCACHE = '0;
         M2_AWPROT = '0;
         M2_AWVALID = '0;
         M2_AWQOS = '0;
         M2_AWREGION = '0;
-        M2_AWUSER = '0;
+        //M2_AWUSER = '0;
         
         // Write Data Channel
         M2_WDATA = '0;
         M2_WSTRB = '0;
         M2_WLAST = '0;
         M2_WVALID = '0;
-        M2_WUSER = '0;
+        //M2_WUSER = '0;
         
         // Write Response Channel
         M2_BREADY = '0;
@@ -164,12 +164,12 @@ interface M2_interface(
         M2_ARLOCK = '0;
         M2_ARSIZE = '0;
         M2_ARBURST = '0;
-        M2_ARCACHE = '0;
+        //M2_ARCACHE = '0;
         M2_ARPROT = '0;
         M2_ARVALID = '0;
         M2_ARQOS = '0;
         M2_ARREGION = '0;
-        M2_ARUSER = '0;
+        //M2_ARUSER = '0;
         
         // Read Data Channel
         M2_RREADY = '0;

@@ -140,48 +140,48 @@ interface S5_interface(
     // Task to initialize all signals to default values
     task automatic init_signals();
         // Write Address Channel - S5 receives these, initialize to safe defaults
-        S5_AWID = '0;
-        S5_AWADDR = '0;
-        S5_AWLEN = '0;
-        S5_AWLOCK = '0;
-        S5_AWSIZE = '0;
-        S5_AWBURST = '0;
-        S5_AWCACHE = '0;
-        S5_AWPROT = '0;
-        S5_AWVALID = '0;
-        S5_AWQOS = '0;
-        S5_AWREGION = '0;
-        S5_AWUSER = '0;
+        // S5_AWID = '0;
+        // S5_AWADDR = '0;
+        // S5_AWLEN = '0;
+        // S5_AWLOCK = '0;
+        // S5_AWSIZE = '0;
+        // S5_AWBURST = '0;
+        // S5_AWCACHE = '0;
+        // S5_AWPROT = '0;
+        // S5_AWVALID = '0;
+        // S5_AWQOS = '0;
+        // S5_AWREGION = '0;
+        // S5_AWUSER = '0;
         S5_AWREADY = '0;  // S5 drives this
         
         // Write Data Channel - S5 receives these, initialize to safe defaults
-        S5_WDATA = '0;
-        S5_WSTRB = '0;
-        S5_WLAST = '0;
-        S5_WVALID = '0;
-        S5_WUSER = '0;
+        // S5_WDATA = '0;
+        // S5_WSTRB = '0;
+        // S5_WLAST = '0;
+        // S5_WVALID = '0;
+        // S5_WUSER = '0;
         S5_WREADY = '0;  // S5 drives this
         
         // Write Response Channel - S5 drives these signals
         S5_BID = '0;
         S5_BRESP = '0;
         S5_BVALID = '0;
-        S5_BREADY = '0;  // S5 receives this
-        S5_BUSER = '0;
+        // S5_BREADY = '0;  // S5 receives this
+        // S5_BUSER = '0;
         
         // Read Address Channel - S5 receives these, initialize to safe defaults
-        S5_ARID = '0;
-        S5_ARADDR = '0;
-        S5_ARLEN = '0;
-        S5_ARLOCK = '0;
-        S5_ARSIZE = '0;
-        S5_ARBURST = '0;
-        S5_ARCACHE = '0;
-        S5_ARPROT = '0;
-        S5_ARVALID = '0;
-        S5_ARQOS = '0;
-        S5_ARREGION = '0;
-        S5_ARUSER = '0;
+        // S5_ARID = '0;
+        // S5_ARADDR = '0;
+        // S5_ARLEN = '0;
+        // S5_ARLOCK = '0;
+        // S5_ARSIZE = '0;
+        // S5_ARBURST = '0;
+        // S5_ARCACHE = '0;
+        // S5_ARPROT = '0;
+        // S5_ARVALID = '0;
+        // S5_ARQOS = '0;
+        // S5_ARREGION = '0;
+        // S5_ARUSER = '0;
         S5_ARREADY = '0;  // S5 drives this
         
         // Read Data Channel - S5 drives these signals
@@ -190,8 +190,8 @@ interface S5_interface(
         S5_RRESP = '0;
         S5_RLAST = '0;
         S5_RVALID = '0;
-        S5_RREADY = '0;  // S5 receives this
-        S5_RUSER = '0;
+        // S5_RREADY = '0;  // S5 receives this
+        // S5_RUSER = '0;
     endtask
     
     // Task to wait for clock edge

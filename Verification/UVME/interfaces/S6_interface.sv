@@ -139,48 +139,48 @@ interface S6_interface(
     // Task to initialize all signals to default values
     task automatic init_signals();
         // Write Address Channel - S6 receives these, initialize to safe defaults
-        S6_AWID = '0;
-        S6_AWADDR = '0;
-        S6_AWLEN = '0;
-        S6_AWLOCK = '0;
-        S6_AWSIZE = '0;
-        S6_AWBURST = '0;
-        S6_AWCACHE = '0;
-        S6_AWPROT = '0;
-        S6_AWVALID = '0;
-        S6_AWQOS = '0;
-        S6_AWREGION = '0;
-        S6_AWUSER = '0;
+        // S6_AWID = '0;
+        // S6_AWADDR = '0;
+        // S6_AWLEN = '0;
+        // S6_AWLOCK = '0;
+        // S6_AWSIZE = '0;
+        // S6_AWBURST = '0;
+        // S6_AWCACHE = '0;
+        // S6_AWPROT = '0;
+        // S6_AWVALID = '0;
+        // S6_AWQOS = '0;
+        // S6_AWREGION = '0;
+        // S6_AWUSER = '0;
         S6_AWREADY = '0;  // S6 drives this
         
         // Write Data Channel - S6 receives these, initialize to safe defaults
-        S6_WDATA = '0;
-        S6_WSTRB = '0;
-        S6_WLAST = '0;
-        S6_WVALID = '0;
-        S6_WUSER = '0;
+        // S6_WDATA = '0;
+        // S6_WSTRB = '0;
+        // S6_WLAST = '0;
+        // S6_WVALID = '0;
+        // S6_WUSER = '0;
         S6_WREADY = '0;  // S6 drives this
         
         // Write Response Channel - S6 drives these signals
         S6_BID = '0;
         S6_BRESP = '0;
         S6_BVALID = '0;
-        S6_BREADY = '0;  // S6 receives this
-        S6_BUSER = '0;
+        // S6_BREADY = '0;  // S6 receives this
+        // S6_BUSER = '0;
         
         // Read Address Channel - S6 receives these, initialize to safe defaults
-        S6_ARID = '0;
-        S6_ARADDR = '0;
-        S6_ARLEN = '0;
-        S6_ARLOCK = '0;
-        S6_ARSIZE = '0;
-        S6_ARBURST = '0;
-        S6_ARCACHE = '0;
-        S6_ARPROT = '0;
-        S6_ARVALID = '0;
-        S6_ARQOS = '0;
-        S6_ARREGION = '0;
-        S6_ARUSER = '0;
+        // S6_ARID = '0;
+        // S6_ARADDR = '0;
+        // S6_ARLEN = '0;
+        // S6_ARLOCK = '0;
+        // S6_ARSIZE = '0;
+        // S6_ARBURST = '0;
+        // S6_ARCACHE = '0;
+        // S6_ARPROT = '0;
+        // S6_ARVALID = '0;
+        // S6_ARQOS = '0;
+        // S6_ARREGION = '0;
+        // S6_ARUSER = '0;
         S6_ARREADY = '0;  // S6 drives this
         
         // Read Data Channel - S6 drives these signals
@@ -189,8 +189,8 @@ interface S6_interface(
         S6_RRESP = '0;
         S6_RLAST = '0;
         S6_RVALID = '0;
-        S6_RREADY = '0;  // S6 receives this
-        S6_RUSER = '0;
+        // S6_RREADY = '0;  // S6 receives this
+        // S6_RUSER = '0;
     endtask
     
     // Task to wait for clock edge

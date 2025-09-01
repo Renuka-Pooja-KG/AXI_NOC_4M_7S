@@ -139,48 +139,48 @@ interface S1_interface(
     // Task to initialize all signals to default values
     task automatic init_signals();
         // Write Address Channel - S1 receives these, initialize to safe defaults
-        S1_AWID = '0;
-        S1_AWADDR = '0;
-        S1_AWLEN = '0;
-        S1_AWLOCK = '0;
-        S1_AWSIZE = '0;
-        S1_AWBURST = '0;
-        S1_AWCACHE = '0;
-        S1_AWPROT = '0;
-        S1_AWVALID = '0;
-        S1_AWQOS = '0;
-        S1_AWREGION = '0;
-        S1_AWUSER = '0;
+        // S1_AWID = '0;
+        // S1_AWADDR = '0;
+        // S1_AWLEN = '0;
+        // S1_AWLOCK = '0;
+        // S1_AWSIZE = '0;
+        // S1_AWBURST = '0;
+        // S1_AWCACHE = '0;
+        // S1_AWPROT = '0;
+        // S1_AWVALID = '0;
+        // S1_AWQOS = '0;
+        // S1_AWREGION = '0;
+        // S1_AWUSER = '0;
         S1_AWREADY = '0;  // S1 drives this
         
         // Write Data Channel - S1 receives these, initialize to safe defaults
-        S1_WDATA = '0;
-        S1_WSTRB = '0;
-        S1_WLAST = '0;
-        S1_WVALID = '0;
-        S1_WUSER = '0;
+        // S1_WDATA = '0;
+        // S1_WSTRB = '0;
+        // S1_WLAST = '0;
+        // S1_WVALID = '0;
+        // S1_WUSER = '0;
         S1_WREADY = '0;  // S1 drives this
         
         // Write Response Channel - S1 drives these signals
         S1_BID = '0;
         S1_BRESP = '0;
         S1_BVALID = '0;
-        S1_BREADY = '0;  // S1 receives this
-        S1_BUSER = '0;
+        //S1_BREADY = '0;  // S1 receives this
+       // S1_BUSER = '0;
         
         // Read Address Channel - S1 receives these, initialize to safe defaults
-        S1_ARID = '0;
-        S1_ARADDR = '0;
-        S1_ARLEN = '0;
-        S1_ARLOCK = '0;
-        S1_ARSIZE = '0;
-        S1_ARBURST = '0;
-        S1_ARCACHE = '0;
-        S1_ARPROT = '0;
-        S1_ARVALID = '0;
-        S1_ARQOS = '0;
-        S1_ARREGION = '0;
-        S1_ARUSER = '0;
+        // S1_ARID = '0;
+        // S1_ARADDR = '0;
+        // S1_ARLEN = '0;
+        // S1_ARLOCK = '0;
+        // S1_ARSIZE = '0;
+        // S1_ARBURST = '0;
+        // S1_ARCACHE = '0;
+        // S1_ARPROT = '0;
+        // S1_ARVALID = '0;
+        // S1_ARQOS = '0;
+        // S1_ARREGION = '0;
+        // S1_ARUSER = '0;
         S1_ARREADY = '0;  // S1 drives this
         
         // Read Data Channel - S1 drives these signals
@@ -189,8 +189,7 @@ interface S1_interface(
         S1_RRESP = '0;
         S1_RLAST = '0;
         S1_RVALID = '0;
-        S1_RREADY = '0;  // S1 receives this
-        S1_RUSER = '0;
+        //S1_RREADY = '0;  // S1 receives this
     endtask
     
     // Task to wait for clock edge

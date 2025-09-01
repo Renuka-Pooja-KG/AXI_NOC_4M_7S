@@ -134,59 +134,59 @@ interface M1_interface(
     
     // Task to initialize all signals to default values
     task automatic init_signals();
-        // Write Address Channel - M1 drives these
+        // Write Address Channel - M1 drives these (OUTPUT signals)
         M1_AWID = '0;
         M1_AWADDR = '0;
         M1_AWLEN = '0;
         M1_AWLOCK = '0;
         M1_AWSIZE = '0;
         M1_AWBURST = '0;
-        M1_AWCACHE = '0;
+       // M1_AWCACHE = '0;
         M1_AWPROT = '0;
         M1_AWVALID = '0;
         M1_AWQOS = '0;
         M1_AWREGION = '0;
-        M1_AWUSER = '0;
-        M1_AWREADY = '0;  // M1 receives this
+       // M1_AWUSER = '0;
+        // M1_AWREADY = '0;  // REMOVED: M1 receives this (INPUT signal)
         
-        // Write Data Channel - M1 drives these
+        // Write Data Channel - M1 drives these (OUTPUT signals)
         M1_WDATA = '0;
         M1_WSTRB = '0;
         M1_WLAST = '0;
         M1_WVALID = '0;
-        M1_WUSER = '0;
-        M1_WREADY = '0;  // M1 receives this
+       // M1_WUSER = '0;
+        // M1_WREADY = '0;   // REMOVED: M1 receives this (INPUT signal)
         
-        // Write Response Channel - M1 receives these
-        M1_BID = '0;
-        M1_BRESP = '0;
-        M1_BVALID = '0;
-        M1_BREADY = '0;  // M1 drives this
-        M1_BUSER = '0;
+        // Write Response Channel - M1 receives these (INPUT signals)
+        // M1_BID = '0;      // REMOVED: M1 receives this (INPUT signal)
+        // M1_BRESP = '0;    // REMOVED: M1 receives this (INPUT signal)
+        // M1_BVALID = '0;   // REMOVED: M1 receives this (INPUT signal)
+        M1_BREADY = '0;  // M1 drives this (OUTPUT signal)
+       // M1_BUSER = '0;   // M1 drives this (OUTPUT signal)
         
-        // Read Address Channel - M1 drives these
+        // Read Address Channel - M1 drives these (OUTPUT signals)
         M1_ARID = '0;
         M1_ARADDR = '0;
         M1_ARLEN = '0;
         M1_ARLOCK = '0;
         M1_ARSIZE = '0;
         M1_ARBURST = '0;
-        M1_ARCACHE = '0;
+       // M1_ARCACHE = '0;
         M1_ARPROT = '0;
         M1_ARVALID = '0;
         M1_ARQOS = '0;
         M1_ARREGION = '0;
-        M1_ARUSER = '0;
-        M1_ARREADY = '0;  // M1 receives this
+       // M1_ARUSER = '0;
+        // M1_ARREADY = '0;  // REMOVED: M1 receives this (INPUT signal)
         
-        // Read Data Channel - M1 receives these
-        M1_RID = '0;
-        M1_RDATA = '0;
-        M1_RRESP = '0;
-        M1_RLAST = '0;
-        M1_RVALID = '0;
-        M1_RREADY = '0;  // M1 drives this
-        M1_RUSER = '0;
+        // Read Data Channel - M1 receives these (INPUT signals)
+        // M1_RID = '0;      // REMOVED: M1 receives this (INPUT signal)
+        // M1_RDATA = '0;    // REMOVED: M1 receives this (INPUT signal)
+        // M1_RRESP = '0;    // REMOVED: M1 receives this (INPUT signal)
+        // M1_RLAST = '0;    // REMOVED: M1 receives this (INPUT signal)
+        // M1_RVALID = '0;   // REMOVED: M1 receives this (INPUT signal)
+        M1_RREADY = '0;  // M1 drives this (OUTPUT signal)
+        M1_RUSER = '0;   // M1 drives this (OUTPUT signal)
     endtask
     
     // Task to wait for clock edge

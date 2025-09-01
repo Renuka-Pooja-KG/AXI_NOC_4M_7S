@@ -139,48 +139,48 @@ interface S3_interface(
     // Task to initialize all signals to default values
     task automatic init_signals();
         // Write Address Channel - S3 receives these, initialize to safe defaults
-        S3_AWID = '0;
-        S3_AWADDR = '0;
-        S3_AWLEN = '0;
-        S3_AWLOCK = '0;
-        S3_AWSIZE = '0;
-        S3_AWBURST = '0;
-        S3_AWCACHE = '0;
-        S3_AWPROT = '0;
-        S3_AWVALID = '0;
-        S3_AWQOS = '0;
-        S3_AWREGION = '0;
-        S3_AWUSER = '0;
+        // S3_AWID = '0;
+        // S3_AWADDR = '0;
+        // S3_AWLEN = '0;
+        // S3_AWLOCK = '0;
+        // S3_AWSIZE = '0;
+        // S3_AWBURST = '0;
+        // S3_AWCACHE = '0;
+        // S3_AWPROT = '0;
+        // S3_AWVALID = '0;
+        // S3_AWQOS = '0;
+        // S3_AWREGION = '0;
+        // S3_AWUSER = '0;
         S3_AWREADY = '0;  // S3 drives this
         
         // Write Data Channel - S3 receives these, initialize to safe defaults
-        S3_WDATA = '0;
-        S3_WSTRB = '0;
-        S3_WLAST = '0;
-        S3_WVALID = '0;
-        S3_WUSER = '0;
+        // S3_WDATA = '0;
+        // S3_WSTRB = '0;
+        // S3_WLAST = '0;
+        // S3_WVALID = '0;
+        // S3_WUSER = '0;
         S3_WREADY = '0;  // S3 drives this
         
         // Write Response Channel - S3 drives these signals
         S3_BID = '0;
         S3_BRESP = '0;
         S3_BVALID = '0;
-        S3_BREADY = '0;  // S3 receives this
-        S3_BUSER = '0;
+        //S3_BREADY = '0;  // S3 receives this
+        //S3_BUSER = '0;
         
         // Read Address Channel - S3 receives these, initialize to safe defaults
-        S3_ARID = '0;
-        S3_ARADDR = '0;
-        S3_ARLEN = '0;
-        S3_ARLOCK = '0;
-        S3_ARSIZE = '0;
-        S3_ARBURST = '0;
-        S3_ARCACHE = '0;
-        S3_ARPROT = '0;
-        S3_ARVALID = '0;
-        S3_ARQOS = '0;
-        S3_ARREGION = '0;
-        S3_ARUSER = '0;
+        // S3_ARID = '0;
+        // S3_ARADDR = '0;
+        // S3_ARLEN = '0;
+        // S3_ARLOCK = '0;
+        // S3_ARSIZE = '0;
+        // S3_ARBURST = '0;
+        // S3_ARCACHE = '0;
+        // S3_ARPROT = '0;
+        // S3_ARVALID = '0;
+        // S3_ARQOS = '0;
+        // S3_ARREGION = '0;
+        // S3_ARUSER = '0;
         S3_ARREADY = '0;  // S3 drives this
         
         // Read Data Channel - S3 drives these signals
@@ -189,8 +189,8 @@ interface S3_interface(
         S3_RRESP = '0;
         S3_RLAST = '0;
         S3_RVALID = '0;
-        S3_RREADY = '0;  // S3 receives this
-        S3_RUSER = '0;
+        // S3_RREADY = '0;  // S3 receives this
+        // S3_RUSER = '0;
     endtask
     
     // Task to wait for clock edge

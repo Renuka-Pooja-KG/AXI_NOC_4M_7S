@@ -138,59 +138,59 @@ interface S0_interface(
     
     // Task to initialize all signals to default values
     task automatic init_signals();
-        // Write Address Channel - S0 receives these, initialize to safe defaults
-        S0_AWID = '0;
-        S0_AWADDR = '0;
-        S0_AWLEN = '0;
-        S0_AWLOCK = '0;
-        S0_AWSIZE = '0;
-        S0_AWBURST = '0;
-        S0_AWCACHE = '0;
-        S0_AWPROT = '0;
-        S0_AWVALID = '0;
-        S0_AWQOS = '0;
-        S0_AWREGION = '0;
-        S0_AWUSER = '0;
-        S0_AWREADY = '0;  // S0 drives this
+        // Write Address Channel - S0 receives these (INPUT signals), DO NOT initialize
+        // S0_AWID = '0;      // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWADDR = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWLEN = '0;     // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWLOCK = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWSIZE = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWBURST = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWCACHE = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWPROT = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWVALID = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWQOS = '0;     // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWREGION = '0;  // REMOVED: S0 receives this (INPUT signal)
+        // S0_AWUSER = '0;    // REMOVED: S0 receives this (INPUT signal)
+        S0_AWREADY = '0;  // S0 drives this (OUTPUT signal)
         
-        // Write Data Channel - S0 receives these, initialize to safe defaults
-        S0_WDATA = '0;
-        S0_WSTRB = '0;
-        S0_WLAST = '0;
-        S0_WVALID = '0;
-        S0_WUSER = '0;
-        S0_WREADY = '0;  // S0 drives this
+        // Write Data Channel - S0 receives these (INPUT signals), DO NOT initialize
+        // S0_WDATA = '0;     // REMOVED: S0 receives this (INPUT signal)
+        // S0_WSTRB = '0;     // REMOVED: S0 receives this (INPUT signal)
+        // S0_WLAST = '0;     // REMOVED: S0 receives this (INPUT signal)
+        // S0_WVALID = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_WUSER = '0;     // REMOVED: S0 receives this (INPUT signal)
+        S0_WREADY = '0;   // S0 drives this (OUTPUT signal)
         
-        // Write Response Channel - S0 drives these signals
-        S0_BID = '0;
-        S0_BRESP = '0;
-        S0_BVALID = '0;
-        S0_BREADY = '0;  // S0 receives this
-        S0_BUSER = '0;
+        // Write Response Channel - S0 drives these signals (OUTPUT signals)
+        S0_BID = '0;      // S0 drives this (OUTPUT signal)
+        S0_BRESP = '0;    // S0 drives this (OUTPUT signal)
+        S0_BVALID = '0;   // S0 drives this (OUTPUT signal)
+        // S0_BREADY = '0;   // REMOVED: S0 receives this (INPUT signal)
+        S0_BUSER = '0;    // S0 drives this (OUTPUT signal)
         
-        // Read Address Channel - S0 receives these, initialize to safe defaults
-        S0_ARID = '0;
-        S0_ARADDR = '0;
-        S0_ARLEN = '0;
-        S0_ARLOCK = '0;
-        S0_ARSIZE = '0;
-        S0_ARBURST = '0;
-        S0_ARCACHE = '0;
-        S0_ARPROT = '0;
-        S0_ARVALID = '0;
-        S0_ARQOS = '0;
-        S0_ARREGION = '0;
-        S0_ARUSER = '0;
-        S0_ARREADY = '0;  // S0 drives this
+        // Read Address Channel - S0 receives these (INPUT signals), DO NOT initialize
+        // S0_ARID = '0;     // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARADDR = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARLEN = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARLOCK = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARSIZE = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARBURST = '0;  // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARCACHE = '0;  // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARPROT = '0;   // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARVALID = '0;  // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARQOS = '0;    // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARREGION = '0; // REMOVED: S0 receives this (INPUT signal)
+        // S0_ARUSER = '0;   // REMOVED: S0 receives this (INPUT signal)
+        S0_ARREADY = '0;  // S0 drives this (OUTPUT signal)
         
-        // Read Data Channel - S0 drives these signals
-        S0_RID = '0;
-        S0_RDATA = '0;
-        S0_RRESP = '0;
-        S0_RLAST = '0;
-        S0_RVALID = '0;
-        S0_RREADY = '0;  // S0 receives this
-        S0_RUSER = '0;
+        // Read Data Channel - S0 drives these signals (OUTPUT signals)
+        S0_RID = '0;      // S0 drives this (OUTPUT signal)
+        S0_RDATA = '0;    // S0 drives this (OUTPUT signal)
+        S0_RRESP = '0;    // S0 drives this (OUTPUT signal)
+        S0_RLAST = '0;    // S0 drives this (OUTPUT signal)
+        S0_RVALID = '0;   // S0 drives this (OUTPUT signal)
+        // S0_RREADY = '0;   // REMOVED: S0 receives this (INPUT signal)
+       // S0_RUSER = '0;    // S0 drives this (OUTPUT signal)
     endtask
     
     // Task to wait for clock edge

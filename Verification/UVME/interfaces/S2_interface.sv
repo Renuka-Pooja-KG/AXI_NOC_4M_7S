@@ -139,48 +139,48 @@ interface S2_interface(
     // Task to initialize all signals to default values
     task automatic init_signals();
         // Write Address Channel - S2 receives these, initialize to safe defaults
-        S2_AWID = '0;
-        S2_AWADDR = '0;
-        S2_AWLEN = '0;
-        S2_AWLOCK = '0;
-        S2_AWSIZE = '0;
-        S2_AWBURST = '0;
-        S2_AWCACHE = '0;
-        S2_AWPROT = '0;
-        S2_AWVALID = '0;
-        S2_AWQOS = '0;
-        S2_AWREGION = '0;
-        S2_AWUSER = '0;
+        // S2_AWID = '0;
+        // S2_AWADDR = '0;
+        // S2_AWLEN = '0;
+        // S2_AWLOCK = '0;
+        // S2_AWSIZE = '0;
+        // S2_AWBURST = '0;
+        // S2_AWCACHE = '0;
+        // S2_AWPROT = '0;
+        // S2_AWVALID = '0;
+        // S2_AWQOS = '0;
+        // S2_AWREGION = '0;
+        // S2_AWUSER = '0;
         S2_AWREADY = '0;  // S2 drives this
         
         // Write Data Channel - S2 receives these, initialize to safe defaults
-        S2_WDATA = '0;
-        S2_WSTRB = '0;
-        S2_WLAST = '0;
-        S2_WVALID = '0;
-        S2_WUSER = '0;
+        // S2_WDATA = '0;
+        // S2_WSTRB = '0;
+        // S2_WLAST = '0;
+        // S2_WVALID = '0;
+        // S2_WUSER = '0;
         S2_WREADY = '0;  // S2 drives this
         
         // Write Response Channel - S2 drives these signals
         S2_BID = '0;
         S2_BRESP = '0;
         S2_BVALID = '0;
-        S2_BREADY = '0;  // S2 receives this
-        S2_BUSER = '0;
+        //S2_BREADY = '0;  // S2 receives this
+        //S2_BUSER = '0;
         
         // Read Address Channel - S2 receives these, initialize to safe defaults
-        S2_ARID = '0;
-        S2_ARADDR = '0;
-        S2_ARLEN = '0;
-        S2_ARLOCK = '0;
-        S2_ARSIZE = '0;
-        S2_ARBURST = '0;
-        S2_ARCACHE = '0;
-        S2_ARPROT = '0;
-        S2_ARVALID = '0;
-        S2_ARQOS = '0;
-        S2_ARREGION = '0;
-        S2_ARUSER = '0;
+        // S2_ARID = '0;
+        // S2_ARADDR = '0;
+        // S2_ARLEN = '0;
+        // S2_ARLOCK = '0;
+        // S2_ARSIZE = '0;
+        // S2_ARBURST = '0;
+        // S2_ARCACHE = '0;
+        // S2_ARPROT = '0;
+        // S2_ARVALID = '0;
+        // S2_ARQOS = '0;
+        // S2_ARREGION = '0;
+        // S2_ARUSER = '0;
         S2_ARREADY = '0;  // S2 drives this
         
         // Read Data Channel - S2 drives these signals
@@ -189,8 +189,8 @@ interface S2_interface(
         S2_RRESP = '0;
         S2_RLAST = '0;
         S2_RVALID = '0;
-        S2_RREADY = '0;  // S2 receives this
-        S2_RUSER = '0;
+        // S2_RREADY = '0;  // S2 receives this
+        // S2_RUSER = '0;
     endtask
     
     // Task to wait for clock edge

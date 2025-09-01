@@ -139,19 +139,19 @@ interface M3_interface(
         M3_AWLOCK = '0;
         M3_AWSIZE = '0;
         M3_AWBURST = '0;
-        M3_AWCACHE = '0;
+        //M3_AWCACHE = '0;
         M3_AWPROT = '0;
         M3_AWVALID = '0;
         M3_AWQOS = '0;
         M3_AWREGION = '0;
-        M3_AWUSER = '0;
+        //M3_AWUSER = '0;
         
         // Write Data Channel
         M3_WDATA = '0;
         M3_WSTRB = '0;
         M3_WLAST = '0;
         M3_WVALID = '0;
-        M3_WUSER = '0;
+        //M3_WUSER = '0;
         
         // Write Response Channel
         M3_BREADY = '0;
@@ -163,12 +163,12 @@ interface M3_interface(
         M3_ARLOCK = '0;
         M3_ARSIZE = '0;
         M3_ARBURST = '0;
-        M3_ARCACHE = '0;
+        //M3_ARCACHE = '0;
         M3_ARPROT = '0;
         M3_ARVALID = '0;
         M3_ARQOS = '0;
         M3_ARREGION = '0;
-        M3_ARUSER = '0;
+        //M3_ARUSER = '0;
         
         // Read Data Channel
         M3_RREADY = '0;
