@@ -51,4 +51,6 @@ class S5_agent extends uvm_agent;
         // s5_monitor.item_collected_port.connect(...);
     endfunction
     
-endclass
+endclass        
+
+`endif // S5_AGENT_SV

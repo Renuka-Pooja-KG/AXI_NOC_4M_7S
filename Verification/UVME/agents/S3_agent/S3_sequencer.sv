@@ -25,3 +25,5 @@ class S3_sequencer extends uvm_sequencer #(S3_seq_item);
     endfunction
     
 endclass
+
+`endif // S3_SEQUENCER_SV

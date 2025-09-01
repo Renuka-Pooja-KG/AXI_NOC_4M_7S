@@ -25,3 +25,5 @@ class S4_sequencer extends uvm_sequencer #(S4_seq_item);
     endfunction
     
 endclass
+
+`endif // S4_SEQUENCER_SV

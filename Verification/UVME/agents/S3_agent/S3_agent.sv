@@ -52,3 +52,5 @@ class S3_agent extends uvm_agent;
     endfunction
     
 endclass
+
+`endif // S3_AGENT_SV

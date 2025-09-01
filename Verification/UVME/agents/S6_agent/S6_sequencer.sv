@@ -25,3 +25,5 @@ class S6_sequencer extends uvm_sequencer #(S6_seq_item);
     endfunction
     
 endclass
+
+`endif // S6_SEQUENCER_SV

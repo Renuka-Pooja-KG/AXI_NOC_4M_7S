@@ -52,3 +52,5 @@ class S1_agent extends uvm_agent;
     endfunction
     
 endclass
+
+`endif // S1_AGENT_SV
