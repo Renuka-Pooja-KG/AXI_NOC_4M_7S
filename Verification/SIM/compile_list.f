@@ -9,6 +9,8 @@
 /home/sgeuser100/renuka_dv/ONGOING_PROJECTS/AXI_NOC_4M_7S/RTL/amba_axi_m4s7.v
 /home/sgeuser100/renuka_dv/ONGOING_PROJECTS/AXI_NOC_4M_7S/RTL/AXI_TO_AXI_NOC_ARBITER_4_TO_7_CONFIG.sv
 
+// UVM Verification include dirs
++incdir+/home/sgeuser100/renuka_dv/ONGOING_PROJECTS/AXI_NOC_4M_7S/Verification/UVME
 # UVM Verification Files
 #Package parameters
 /home/sgeuser100/renuka_dv/ONGOING_PROJECTS/AXI_NOC_4M_7S/Verification/UVME/package/axi_common_types_pkg.sv
