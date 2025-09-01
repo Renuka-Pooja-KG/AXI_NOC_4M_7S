@@ -80,8 +80,8 @@ class M2_driver extends uvm_driver #(M2_seq_item);
     
     // Drive transaction based on type
     virtual task drive_transaction(M2_seq_item item);
-        `uvm_info("M2_DRIVER", $sformatf("M2 Driver %0d driving transaction: Type=%s, Slave=%0d, ID=%0d", 
-                                        m2_driver_id, item.trans_type.name(), item.slave_id, item.M2_AWID), UVM_LOW)
+        `uvm_info("M2_DRIVER", $sformatf("M2 Driver %0d driving transaction: %s", 
+                                        m2_driver_id, item.convert2string()), UVM_LOW)
         
         case (item.trans_type)
             AXI_WRITE: drive_write_transaction(item);

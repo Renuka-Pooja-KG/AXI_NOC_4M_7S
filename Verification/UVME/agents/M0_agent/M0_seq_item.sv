@@ -224,11 +224,18 @@ class M0_seq_item extends uvm_sequence_item;
         burst_strobe = new[1];
     endfunction
     
+    // Custom string conversion function for enum fields
+    function string convert2string();
+        string result;
+        result = $sformatf("M0_seq_item: trans_type=%s, slave_id=%s, AWID=%0d, AWADDR=0x%0h", 
+                          trans_type.name(), slave_id.name(), M0_AWID, M0_AWADDR);
+        return result;
+    endfunction
+    
     // UVM Field Macros for automatic copy, compare, print, etc.
     `uvm_object_utils_begin(M0_seq_item)
         `uvm_field_int(m0_transaction_id, UVM_ALL_ON)
-        `uvm_field_enum(slave_id, UVM_ALL_ON)
-        `uvm_field_enum(trans_type, UVM_ALL_ON)
+
         `uvm_field_int(M0_AWID, UVM_ALL_ON)
         `uvm_field_int(M0_AWADDR, UVM_ALL_ON)
         `uvm_field_int(M0_AWLEN, UVM_ALL_ON)

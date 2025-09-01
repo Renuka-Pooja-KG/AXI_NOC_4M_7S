@@ -182,11 +182,18 @@ class S3_seq_item extends uvm_sequence_item;
         burst_strobe = new[1];
     endfunction
     
+    // Custom string conversion function for enum fields
+    function string convert2string();
+        string result;
+        result = $sformatf("S3_seq_item: trans_type=%s, master_id=%s, AWID=%0d, AWADDR=0x%0h", 
+                          trans_type.name(), master_id.name(), S3_AWID, S3_AWADDR);
+        return result;
+    endfunction
+    
     // UVM field macros for automation
     `uvm_object_utils_begin(S3_seq_item)
         `uvm_field_int(s3_transaction_id, UVM_ALL_ON)
-        `uvm_field_enum(master_id, UVM_ALL_ON)
-        `uvm_field_enum(trans_type, UVM_ALL_ON)
+
         
         // Write Address Channel
         `uvm_field_int(S3_AWID, UVM_ALL_ON)
