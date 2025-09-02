@@ -646,6 +646,8 @@ module axi_noc_tb_top;
          $display("=== TESTBENCH STARTED ===");
          // Set virtual interfaces in config database for UVM components
         // Master interfaces - set full interface without modport specification
+        $display("=== SETTING INTERFACE CONFIG ===");
+
         uvm_config_db#(virtual M0_interface)::set(null, "*", "m0_vif", master0_if);
         uvm_config_db#(virtual M1_interface)::set(null, "*", "m1_vif", master1_if);
         uvm_config_db#(virtual M2_interface)::set(null, "*", "m2_vif", master2_if);
@@ -660,6 +662,8 @@ module axi_noc_tb_top;
         uvm_config_db#(virtual S5_interface)::set(null, "*", "s5_vif", slave5_if);
         uvm_config_db#(virtual S6_interface)::set(null, "*", "s6_vif", slave6_if);
         
+         $display("=== INTERFACE CONFIG SET ===");
+
         // Set up UVM verbosity (UVM_LOW = 0)
         uvm_top.set_report_verbosity_level(0);
         
@@ -667,7 +671,9 @@ module axi_noc_tb_top;
         uvm_top.enable_print_topology = 1;
         
         // Start UVM test
+        $display("=== STARTING UVM TEST ===");
         run_test();
+        $display("=== UVM TEST COMPLETED ===");
     end
 
     // Waveform dumping
