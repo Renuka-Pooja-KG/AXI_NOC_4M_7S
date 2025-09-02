@@ -4,15 +4,15 @@
 // Basic test that instantiates the environment and runs a virtual sequence
 // Demonstrates the basic UVM test structure for AXI NoC verification
 
-`ifndef TEST_SV
-`define TEST_SV
+`ifndef AXI_NOC_TEST_SV
+`define AXI_NOC_TEST_SV
 
 // Note: All imports and includes will be handled by axi_noc_pkg
 
-class test extends uvm_test;
+class axi_noc_test extends uvm_test;
     
     //--- Factory Registration -------//
-    `uvm_component_utils(test)
+    `uvm_component_utils(axi_noc_test)
     
     //--- Component Handles -------//
     axi_noc_env env_top;
@@ -22,7 +22,7 @@ class test extends uvm_test;
     string seq_type;
     
     //--- Constructor -------//
-    function new(string name = "test", uvm_component parent = null);
+    function new(string name = "axi_noc_test", uvm_component parent = null);
         super.new(name, parent);
         `uvm_info(get_type_name(), "TEST CONSTRUCTOR CALLED", UVM_LOW)
     endfunction

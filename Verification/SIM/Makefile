@@ -8,7 +8,7 @@ info:
 	@echo "/------------------------list of alias name available in make file ----------------------//"
 	@echo " along with make pass any of the one parameter to run corresponding test or to open waveform"
 	@echo "  all        			 	----> to run all the below test cases use make all command"
-	@echo "  test  				----> to run the test.sv (basic write/read operations)"
+	@echo "  axi_noc_test  				----> to run the axi_noc_test.sv (basic write/read operations)"
 	@echo "  packet_write_test  		----> to run the packet_write_test.sv (packet writing operations)"
 	@echo "  packet_read_test  			----> to run the packet_read_test.sv (packet reading operations)"
 	@echo "  reset_test  				----> to run the reset_test.sv (reset scenarios)"
@@ -28,9 +28,9 @@ info:
 all: packet_write_test packet_read_test reset_test concurrent_test waveform
 
 # Base test case - Basic write/read operations
-test:
+axi_noc_test:
 	@echo "[makefile]  base test case is running"
-	xrun -access +rwc -f compile_list.f +UVM_TESTNAME=test -uvmhome CDNS-1.1d
+	xrun -access +rwc -f compile_list.f +UVM_TESTNAME=axi_noc_test -uvmhome CDNS-1.1d
 	@echo "[makefile]  base test case run is completed successfully"
 
 # # Packet write test case

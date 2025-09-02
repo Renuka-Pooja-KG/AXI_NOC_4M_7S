@@ -7,11 +7,6 @@ package axi_noc_pkg;
   import uvm_pkg::*;
   `include "uvm_macros.svh"
   
-  // Debug message
-  initial begin
-    $display("=== AXI_NOC_PKG LOADED ===");
-  end
-  
   // Import common AXI types package
   import axi_common_types_pkg::*;
 
@@ -133,7 +128,7 @@ package axi_noc_pkg;
   
   // ===== TEST FILES =====
   // Base test class
-  `include "tests/test.sv"
+  `include "tests/axi_noc_test.sv"
   
   // // Master tests
   // `include "./tests/m0_tests.sv"
