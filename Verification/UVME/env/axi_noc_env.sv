@@ -112,18 +112,18 @@ class axi_noc_env extends uvm_env;
         super.connect_phase(phase);
 
         // Set config database for virtual sequencer to find all agent sequencers
-        uvm_config_db#(M0_sequencer)::set(this, "virtual_seqr", "M0_seqr", m0_agent.m0_sequencer);
-        uvm_config_db#(M1_sequencer)::set(this, "virtual_seqr", "M1_seqr", m1_agent.m1_sequencer);
-        uvm_config_db#(M2_sequencer)::set(this, "virtual_seqr", "M2_seqr", m2_agent.m2_sequencer);
-        uvm_config_db#(M3_sequencer)::set(this, "virtual_seqr", "M3_seqr", m3_agent.m3_sequencer);
+        uvm_config_db#(M0_sequencer)::set(this, "virtual_seqr", "m0_sequencer", m0_agent.m0_sequencer);
+        uvm_config_db#(M1_sequencer)::set(this, "virtual_seqr", "m1_sequencer", m1_agent.m1_sequencer);
+        uvm_config_db#(M2_sequencer)::set(this, "virtual_seqr", "m2_sequencer", m2_agent.m2_sequencer);
+        uvm_config_db#(M3_sequencer)::set(this, "virtual_seqr", "m3_sequencer", m3_agent.m3_sequencer);
         
-        uvm_config_db#(S0_sequencer)::set(this, "virtual_seqr", "S0_seqr", s0_agent.s0_sequencer);
-        uvm_config_db#(S1_sequencer)::set(this, "virtual_seqr", "S1_seqr", s1_agent.s1_sequencer);
-        uvm_config_db#(S2_sequencer)::set(this, "virtual_seqr", "S2_seqr", s2_agent.s2_sequencer);
-        uvm_config_db#(S3_sequencer)::set(this, "virtual_seqr", "S3_seqr", s3_agent.s3_sequencer);
-        uvm_config_db#(S4_sequencer)::set(this, "virtual_seqr", "S4_seqr", s4_agent.s4_sequencer);
-        uvm_config_db#(S5_sequencer)::set(this, "virtual_seqr", "S5_seqr", s5_agent.s5_sequencer);
-        uvm_config_db#(S6_sequencer)::set(this, "virtual_seqr", "S6_seqr", s6_agent.s6_sequencer);
+        uvm_config_db#(S0_sequencer)::set(this, "virtual_seqr", "s0_sequencer", s0_agent.s0_sequencer);
+        uvm_config_db#(S1_sequencer)::set(this, "virtual_seqr", "s1_sequencer", s1_agent.s1_sequencer);
+        uvm_config_db#(S2_sequencer)::set(this, "virtual_seqr", "s2_sequencer", s2_agent.s2_sequencer);
+        uvm_config_db#(S3_sequencer)::set(this, "virtual_seqr", "s3_sequencer", s3_agent.s3_sequencer);
+        uvm_config_db#(S4_sequencer)::set(this, "virtual_seqr", "s4_sequencer", s4_agent.s4_sequencer);
+        uvm_config_db#(S5_sequencer)::set(this, "virtual_seqr", "s5_sequencer", s5_agent.s5_sequencer);
+        uvm_config_db#(S6_sequencer)::set(this, "virtual_seqr", "s6_sequencer", s6_agent.s6_sequencer);
         
         `uvm_info("AXI_NOC_ENV", "All agent sequencers configured for virtual sequencer", UVM_LOW)
     endfunction
