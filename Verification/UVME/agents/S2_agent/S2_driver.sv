@@ -52,7 +52,7 @@ class S2_driver extends uvm_driver #(S2_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S2_interface.driver)::get(this, "", "s2_vif", s2_vif)) begin
+        if (!uvm_config_db#(virtual S2_interface)::get(this, "", "s2_vif", s2_vif)) begin
             `uvm_fatal("S2_DRIVER", "Virtual interface not found for S2 driver")
         end
     endfunction

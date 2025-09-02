@@ -54,7 +54,7 @@ class M2_driver extends uvm_driver #(M2_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual M2_interface.driver)::get(this, "", "m2_vif", m2_vif)) begin
+        if (!uvm_config_db#(virtual M2_interface)::get(this, "", "m2_vif", m2_vif)) begin
             `uvm_fatal("M2_DRIVER", "Virtual interface not found for M2 driver")
         end
     endfunction

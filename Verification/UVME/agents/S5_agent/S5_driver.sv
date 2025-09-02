@@ -52,7 +52,7 @@ class S5_driver extends uvm_driver #(S5_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S5_interface.driver)::get(this, "", "s5_vif", s5_vif)) begin
+        if (!uvm_config_db#(virtual S5_interface)::get(this, "", "s5_vif", s5_vif)) begin
             `uvm_fatal("S5_DRIVER", "Virtual interface not found for S5 driver")
         end
     endfunction

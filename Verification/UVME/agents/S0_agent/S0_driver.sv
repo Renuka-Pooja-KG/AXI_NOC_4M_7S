@@ -52,7 +52,7 @@ class S0_driver extends uvm_driver #(S0_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S0_interface.driver)::get(this, "", "s0_vif", s0_vif)) begin
+        if (!uvm_config_db#(virtual S0_interface)::get(this, "", "s0_vif", s0_vif)) begin
             `uvm_fatal("S0_DRIVER", "Virtual interface not found for S0 driver")
         end
     endfunction

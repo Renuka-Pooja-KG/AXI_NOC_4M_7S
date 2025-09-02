@@ -54,7 +54,7 @@ class M3_driver extends uvm_driver #(M3_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual M3_interface.driver)::get(this, "", "m3_vif", m3_vif)) begin
+        if (!uvm_config_db#(virtual M3_interface)::get(this, "", "m3_vif", m3_vif)) begin
             `uvm_fatal("M3_DRIVER", "Virtual interface not found for M3 driver")
         end
     endfunction

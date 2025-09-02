@@ -52,7 +52,7 @@ class S1_driver extends uvm_driver #(S1_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S1_interface.driver)::get(this, "", "s1_vif", s1_vif)) begin
+        if (!uvm_config_db#(virtual S1_interface)::get(this, "", "s1_vif", s1_vif)) begin
             `uvm_fatal("S1_DRIVER", "Virtual interface not found for S1 driver")
         end
     endfunction

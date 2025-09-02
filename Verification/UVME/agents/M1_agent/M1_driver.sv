@@ -54,7 +54,7 @@ class M1_driver extends uvm_driver #(M1_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual M1_interface.driver)::get(this, "", "m1_vif", m1_vif)) begin
+        if (!uvm_config_db#(virtual M1_interface)::get(this, "", "m1_vif", m1_vif)) begin
             `uvm_fatal("M1_DRIVER", "Virtual interface not found for M1 driver")
         end
     endfunction

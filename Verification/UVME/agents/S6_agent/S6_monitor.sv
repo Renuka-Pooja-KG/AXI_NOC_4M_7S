@@ -35,7 +35,7 @@ class S6_monitor extends uvm_monitor;
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S6_interface.monitor)::get(this, "", "s6_vif", s6_vif)) begin
+        if (!uvm_config_db#(virtual S6_interface)::get(this, "", "s6_vif", s6_vif)) begin
             `uvm_fatal("S6_MONITOR", "Virtual interface not found for S6 monitor")
         end
         

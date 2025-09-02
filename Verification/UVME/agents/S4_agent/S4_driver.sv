@@ -52,7 +52,7 @@ class S4_driver extends uvm_driver #(S4_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S4_interface.driver)::get(this, "", "s4_vif", s4_vif)) begin
+        if (!uvm_config_db#(virtual S4_interface)::get(this, "", "s4_vif", s4_vif)) begin
             `uvm_fatal("S4_DRIVER", "Virtual interface not found for S4 driver")
         end
     endfunction

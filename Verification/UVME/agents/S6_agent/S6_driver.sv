@@ -52,7 +52,7 @@ class S6_driver extends uvm_driver #(S6_seq_item);
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S6_interface.driver)::get(this, "", "s6_vif", s6_vif)) begin
+        if (!uvm_config_db#(virtual S6_interface)::get(this, "", "s6_vif", s6_vif)) begin
             `uvm_fatal("S6_DRIVER", "Virtual interface not found for S6 driver")
         end
     endfunction

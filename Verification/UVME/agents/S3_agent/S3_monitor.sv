@@ -35,7 +35,7 @@ class S3_monitor extends uvm_monitor;
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S3_interface.monitor)::get(this, "", "s3_vif", s3_vif)) begin
+        if (!uvm_config_db#(virtual S3_interface)::get(this, "", "s3_vif", s3_vif)) begin
             `uvm_fatal("S3_MONITOR", "Virtual interface not found for S3 monitor")
         end
         

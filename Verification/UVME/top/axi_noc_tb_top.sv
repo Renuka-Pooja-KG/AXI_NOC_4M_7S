@@ -641,25 +641,28 @@ module axi_noc_tb_top;
 
     // ===== UVM TEST START =====
     initial begin
-        // Set virtual interfaces in config database for UVM components
-        uvm_config_db#(virtual M0_interface)::set(null, "*", "master0_vif", master0_if);
-        uvm_config_db#(virtual M1_interface)::set(null, "*", "master1_vif", master1_if);
-        uvm_config_db#(virtual M2_interface)::set(null, "*", "master2_vif", master2_if);
-        uvm_config_db#(virtual M3_interface)::set(null, "*", "master3_vif", master3_if);
+         // Set virtual interfaces in config database for UVM components
+        // Master interfaces - set full interface without modport specification
+        uvm_config_db#(virtual M0_interface)::set(null, "*", "m0_vif", master0_if);
+        uvm_config_db#(virtual M1_interface)::set(null, "*", "m1_vif", master1_if);
+        uvm_config_db#(virtual M2_interface)::set(null, "*", "m2_vif", master2_if);
+        uvm_config_db#(virtual M3_interface)::set(null, "*", "m3_vif", master3_if);
         
-        uvm_config_db#(virtual S0_interface)::set(null, "*", "slave0_vif", slave0_if);
-        uvm_config_db#(virtual S1_interface)::set(null, "*", "slave1_vif", slave1_if);
-        uvm_config_db#(virtual S2_interface)::set(null, "*", "slave2_vif", slave2_if);
-        uvm_config_db#(virtual S3_interface)::set(null, "*", "slave3_vif", slave3_if);
-        uvm_config_db#(virtual S4_interface)::set(null, "*", "slave4_vif", slave4_if);
-        uvm_config_db#(virtual S5_interface)::set(null, "*", "slave5_vif", slave5_if);
-        uvm_config_db#(virtual S6_interface)::set(null, "*", "slave6_vif", slave6_if);
+        // Slave interfaces - set full interface without modport specification
+        uvm_config_db#(virtual S0_interface)::set(null, "*", "s0_vif", slave0_if);
+        uvm_config_db#(virtual S1_interface)::set(null, "*", "s1_vif", slave1_if);
+        uvm_config_db#(virtual S2_interface)::set(null, "*", "s2_vif", slave2_if);
+        uvm_config_db#(virtual S3_interface)::set(null, "*", "s3_vif", slave3_if);
+        uvm_config_db#(virtual S4_interface)::set(null, "*", "s4_vif", slave4_if);
+        uvm_config_db#(virtual S5_interface)::set(null, "*", "s5_vif", slave5_if);
+        uvm_config_db#(virtual S6_interface)::set(null, "*", "s6_vif", slave6_if);
         
-            // Set up UVM verbosity (UVM_LOW = 0)
+        // Set up UVM verbosity (UVM_LOW = 0)
         uvm_top.set_report_verbosity_level(0);
         
         // Enable UVM transaction recording
         uvm_top.enable_print_topology = 1;
+        
         // Start UVM test
         run_test();
     end

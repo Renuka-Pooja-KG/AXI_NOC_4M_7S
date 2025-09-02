@@ -35,7 +35,7 @@ class S5_monitor extends uvm_monitor;
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual S5_interface.monitor)::get(this, "", "s5_vif", s5_vif)) begin
+        if (!uvm_config_db#(virtual S5_interface)::get(this, "", "s5_vif", s5_vif)) begin
             `uvm_fatal("S5_MONITOR", "Virtual interface not found for S5 monitor")
         end
         

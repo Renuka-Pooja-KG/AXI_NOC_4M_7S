@@ -35,7 +35,7 @@ class M0_monitor extends uvm_monitor;
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual M0_interface.monitor)::get(this, "", "m0_vif", m0_vif)) begin
+        if (!uvm_config_db#(virtual M0_interface)::get(this, "", "m0_vif", m0_vif)) begin
             `uvm_fatal("M0_MONITOR", "Virtual interface not found for M0 monitor")
         end
         

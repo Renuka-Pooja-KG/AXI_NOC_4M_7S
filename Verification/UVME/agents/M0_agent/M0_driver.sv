@@ -49,12 +49,12 @@ class M0_driver extends uvm_driver #(M0_seq_item);
         m0_driver_enabled = 1;
     endfunction
     
-    // Build phase - get virtual interface
+     // Build phase - get virtual interface
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         
-        // Get virtual interface from config database
-        if (!uvm_config_db#(virtual M0_interface.driver)::get(this, "", "m0_vif", m0_vif)) begin
+        // Get virtual interface from config database (full interface, no modport)
+        if (!uvm_config_db#(virtual M0_interface)::get(this, "", "m0_vif", m0_vif)) begin
             `uvm_fatal("M0_DRIVER", "Virtual interface not found for M0 driver")
         end
     endfunction

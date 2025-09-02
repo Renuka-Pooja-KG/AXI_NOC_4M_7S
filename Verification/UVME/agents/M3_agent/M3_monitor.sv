@@ -35,7 +35,7 @@ class M3_monitor extends uvm_monitor;
         super.build_phase(phase);
         
         // Get virtual interface from config database
-        if (!uvm_config_db#(virtual M3_interface.monitor)::get(this, "", "m3_vif", m3_vif)) begin
+        if (!uvm_config_db#(virtual M3_interface)::get(this, "", "m3_vif", m3_vif)) begin
             `uvm_fatal("M3_MONITOR", "Virtual interface not found for M3 monitor")
         end
         
