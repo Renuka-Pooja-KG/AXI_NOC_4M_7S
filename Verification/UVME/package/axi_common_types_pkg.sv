@@ -147,6 +147,7 @@ package axi_common_types_pkg;
 
     // ===== AXI SIGNAL WIDTHS =====
     parameter int AXI_ID_WIDTH     = 4;    // ID width in bits
+    parameter int AXI_SID_WIDTH    = 6;    // Slave ID width in bits
     parameter int AXI_ADDR_WIDTH   = 32;   // Address width in bits
     parameter int AXI_DATA_WIDTH   = 32;   // Data width in bits
     parameter int AXI_STRB_WIDTH   = 4;    // Strobe width in bits

@@ -19,7 +19,7 @@ interface S5_interface(
 
     // ===== WRITE ADDRESS CHANNEL (AW) =====
     // S5 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S5_AWID;           // Write address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S5_AWID;           // Write address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S5_AWADDR;         // Write address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S5_AWLEN;          // Burst length (0-15)
     logic                        S5_AWLOCK;         // Lock type
@@ -44,7 +44,7 @@ interface S5_interface(
     
     // ===== WRITE RESPONSE CHANNEL (B) =====
     // S5 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S5_BID;            // Write response ID (S5 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S5_BID;            // Write response ID (S5 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S5_BRESP;          // Write response (S5 drives this)
     logic                        S5_BVALID;         // Write response valid (S5 drives this)
     logic                        S5_BREADY;         // Write response ready (from master)
@@ -52,7 +52,7 @@ interface S5_interface(
     
     // ===== READ ADDRESS CHANNEL (AR) =====
     // S5 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S5_ARID;           // Read address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S5_ARID;           // Read address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S5_ARADDR;         // Read address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S5_ARLEN;          // Burst length (0-15)
     logic                        S5_ARLOCK;         // Lock type
@@ -68,7 +68,7 @@ interface S5_interface(
     
     // ===== READ DATA CHANNEL (R) =====
     // S5 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S5_RID;            // Read ID (S5 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S5_RID;            // Read ID (S5 drives this)
     logic [AXI_DATA_WIDTH-1:0]   S5_RDATA;          // Read data (S5 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S5_RRESP;          // Read response (S5 drives this)
     logic                        S5_RLAST;          // Read last (S5 drives this)

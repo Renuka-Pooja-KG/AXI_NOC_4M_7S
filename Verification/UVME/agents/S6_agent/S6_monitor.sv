@@ -13,7 +13,7 @@
 class S6_monitor extends uvm_monitor;
     
     // Virtual interface for S6 AXI signals using monitor modport
-    virtual S6_interface.monitor s6_vif;
+    virtual S6_interface s6_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(S6_seq_item) item_collect_port;

@@ -13,7 +13,7 @@
 class S1_driver extends uvm_driver #(S1_seq_item);
     
     // Virtual interface for S1 AXI signals using driver modport
-    virtual S1_interface.driver s1_vif;
+    virtual S1_interface s1_vif;
     
     // S1 sequence item handle
     S1_seq_item req;

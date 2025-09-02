@@ -13,7 +13,7 @@
 class M2_monitor extends uvm_monitor;
     
     // Virtual interface for M2 AXI signals using monitor modport
-    virtual M2_interface.monitor m2_vif;
+    virtual M2_interface m2_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(M2_seq_item) item_collect_port;

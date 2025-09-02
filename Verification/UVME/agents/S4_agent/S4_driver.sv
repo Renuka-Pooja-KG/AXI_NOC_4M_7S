@@ -13,7 +13,7 @@
 class S4_driver extends uvm_driver #(S4_seq_item);
     
     // Virtual interface for S4 AXI signals using driver modport
-    virtual S4_interface.driver s4_vif;
+    virtual S4_interface s4_vif;
     
     // S4 sequence item handle
     S4_seq_item req;

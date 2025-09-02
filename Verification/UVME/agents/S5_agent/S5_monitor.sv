@@ -13,7 +13,7 @@
 class S5_monitor extends uvm_monitor;
     
     // Virtual interface for S5 AXI signals using monitor modport
-    virtual S5_interface.monitor s5_vif;
+    virtual S5_interface s5_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(S5_seq_item) item_collect_port;

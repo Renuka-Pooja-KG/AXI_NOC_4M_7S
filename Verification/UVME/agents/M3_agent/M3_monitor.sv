@@ -13,7 +13,7 @@
 class M3_monitor extends uvm_monitor;
     
     // Virtual interface for M3 AXI signals using monitor modport
-    virtual M3_interface.monitor m3_vif;
+    virtual M3_interface m3_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(M3_seq_item) item_collect_port;

@@ -13,7 +13,7 @@
 class M1_driver extends uvm_driver #(M1_seq_item);
     
     // Virtual interface for M1 AXI signals using driver modport
-    virtual M1_interface.driver m1_vif;
+    virtual M1_interface m1_vif;
     
     //M1_seq_item
     M1_seq_item req;

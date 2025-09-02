@@ -18,7 +18,7 @@ interface S3_interface(
     
     // ===== WRITE ADDRESS CHANNEL (AW) =====
     // S3 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S3_AWID;           // Write address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S3_AWID;           // Write address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S3_AWADDR;         // Write address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S3_AWLEN;          // Burst length (0-15)
     logic                        S3_AWLOCK;         // Lock type
@@ -43,7 +43,7 @@ interface S3_interface(
     
     // ===== WRITE RESPONSE CHANNEL (B) =====
     // S3 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S3_BID;            // Write response ID (S3 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S3_BID;            // Write response ID (S3 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S3_BRESP;          // Write response (S3 drives this)
     logic                        S3_BVALID;         // Write response valid (S3 drives this)
     logic                        S3_BREADY;         // Write response ready (from master)
@@ -51,7 +51,7 @@ interface S3_interface(
     
     // ===== READ ADDRESS CHANNEL (AR) =====
     // S3 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S3_ARID;           // Read address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S3_ARID;           // Read address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S3_ARADDR;         // Read address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S3_ARLEN;          // Burst length (0-15)
     logic                        S3_ARLOCK;         // Lock type
@@ -67,7 +67,7 @@ interface S3_interface(
     
     // ===== READ DATA CHANNEL (R) =====
     // S3 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S3_RID;            // Read ID (S3 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S3_RID;            // Read ID (S3 drives this)
     logic [AXI_DATA_WIDTH-1:0]   S3_RDATA;          // Read data (S3 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S3_RRESP;          // Read response (S3 drives this)
     logic                        S3_RLAST;          // Read last (S3 drives this)

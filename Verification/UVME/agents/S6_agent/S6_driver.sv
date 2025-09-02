@@ -13,7 +13,7 @@
 class S6_driver extends uvm_driver #(S6_seq_item);
     
     // Virtual interface for S6 AXI signals using driver modport
-    virtual S6_interface.driver s6_vif;
+    virtual S6_interface s6_vif;
     
     // S6 sequence item handle
     S6_seq_item req;

@@ -13,7 +13,7 @@
 class S2_monitor extends uvm_monitor;
     
     // Virtual interface for S2 AXI signals using monitor modport
-    virtual S2_interface.monitor s2_vif;
+    virtual S2_interface s2_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(S2_seq_item) item_collect_port;

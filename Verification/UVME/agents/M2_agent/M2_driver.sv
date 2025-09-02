@@ -13,7 +13,7 @@
 class M2_driver extends uvm_driver #(M2_seq_item);
     
     // Virtual interface for M2 AXI signals using driver modport
-    virtual M2_interface.driver m2_vif;
+    virtual M2_interface m2_vif;
     
     //M2_seq_item
     M2_seq_item req;

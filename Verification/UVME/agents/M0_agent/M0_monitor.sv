@@ -13,7 +13,7 @@
 class M0_monitor extends uvm_monitor;
     
     // Virtual interface for M0 AXI signals using monitor modport
-    virtual M0_interface.monitor m0_vif;
+    virtual M0_interface m0_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(M0_seq_item) item_collect_port;

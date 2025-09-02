@@ -13,7 +13,7 @@
 class S0_driver extends uvm_driver #(S0_seq_item);
     
     // Virtual interface for S0 AXI signals using driver modport
-    virtual S0_interface.driver s0_vif;
+    virtual S0_interface s0_vif;
     
     // S0 sequence item handle
     S0_seq_item req;

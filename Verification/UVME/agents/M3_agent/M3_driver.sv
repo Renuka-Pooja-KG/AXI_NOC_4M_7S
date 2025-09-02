@@ -13,7 +13,7 @@
 class M3_driver extends uvm_driver #(M3_seq_item);
     
     // Virtual interface for M3 AXI signals using driver modport
-    virtual M3_interface.driver m3_vif;
+    virtual M3_interface m3_vif;
     
     //M3_seq_item
     M3_seq_item req;

@@ -13,7 +13,7 @@
 class S5_driver extends uvm_driver #(S5_seq_item);
     
     // Virtual interface for S5 AXI signals using driver modport
-    virtual S5_interface.driver s5_vif;
+    virtual S5_interface s5_vif;
     
     // S5 sequence item handle
     S5_seq_item req;

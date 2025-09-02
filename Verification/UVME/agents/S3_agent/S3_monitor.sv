@@ -13,7 +13,7 @@
 class S3_monitor extends uvm_monitor;
     
     // Virtual interface for S3 AXI signals using monitor modport
-    virtual S3_interface.monitor s3_vif;
+    virtual S3_interface s3_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(S3_seq_item) item_collect_port;

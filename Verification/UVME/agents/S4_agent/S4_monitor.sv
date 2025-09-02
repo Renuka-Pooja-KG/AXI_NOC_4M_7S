@@ -13,7 +13,7 @@
 class S4_monitor extends uvm_monitor;
     
     // Virtual interface for S4 AXI signals using monitor modport
-    virtual S4_interface.monitor s4_vif;
+    virtual S4_interface s4_vif;
     
     // Analysis port for transaction broadcasting
     uvm_analysis_port #(S4_seq_item) item_collect_port;

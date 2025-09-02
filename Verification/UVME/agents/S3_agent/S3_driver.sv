@@ -13,7 +13,7 @@
 class S3_driver extends uvm_driver #(S3_seq_item);
     
     // Virtual interface for S3 AXI signals using driver modport
-    virtual S3_interface.driver s3_vif;
+    virtual S3_interface s3_vif;
     
     // S3 sequence item handle
     S3_seq_item req;

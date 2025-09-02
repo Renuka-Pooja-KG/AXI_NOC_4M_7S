@@ -18,7 +18,7 @@ interface S1_interface(
     
     // ===== WRITE ADDRESS CHANNEL (AW) =====
     // S1 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S1_AWID;           // Write address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S1_AWID;           // Write address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S1_AWADDR;         // Write address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S1_AWLEN;          // Burst length (0-15)
     logic                        S1_AWLOCK;         // Lock type
@@ -43,7 +43,7 @@ interface S1_interface(
     
     // ===== WRITE RESPONSE CHANNEL (B) =====
     // S1 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S1_BID;            // Write response ID (S1 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S1_BID;            // Write response ID (S1 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S1_BRESP;          // Write response (S1 drives this)
     logic                        S1_BVALID;         // Write response valid (S1 drives this)
     logic                        S1_BREADY;         // Write response ready (from master)
@@ -51,7 +51,7 @@ interface S1_interface(
     
     // ===== READ ADDRESS CHANNEL (AR) =====
     // S1 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S1_ARID;           // Read address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S1_ARID;           // Read address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S1_ARADDR;         // Read address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S1_ARLEN;          // Burst length (0-15)
     logic                        S1_ARLOCK;         // Lock type
@@ -67,7 +67,7 @@ interface S1_interface(
     
     // ===== READ DATA CHANNEL (R) =====
     // S1 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S1_RID;            // Read ID (S1 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S1_RID;            // Read ID (S1 drives this)
     logic [AXI_DATA_WIDTH-1:0]   S1_RDATA;          // Read data (S1 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S1_RRESP;          // Read response (S1 drives this)
     logic                        S1_RLAST;          // Read last (S1 drives this)

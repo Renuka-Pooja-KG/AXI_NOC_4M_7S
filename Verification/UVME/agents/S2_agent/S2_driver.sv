@@ -13,7 +13,7 @@
 class S2_driver extends uvm_driver #(S2_seq_item);
     
     // Virtual interface for S2 AXI signals using driver modport
-    virtual S2_interface.driver s2_vif;
+    virtual S2_interface s2_vif;
     
     // S2 sequence item handle
     S2_seq_item req;

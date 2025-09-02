@@ -18,7 +18,7 @@ interface S2_interface(
     
     // ===== WRITE ADDRESS CHANNEL (AW) =====
     // S2 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S2_AWID;           // Write address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S2_AWID;           // Write address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S2_AWADDR;         // Write address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S2_AWLEN;          // Burst length (0-15)
     logic                        S2_AWLOCK;         // Lock type
@@ -43,7 +43,7 @@ interface S2_interface(
     
     // ===== WRITE RESPONSE CHANNEL (B) =====
     // S2 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S2_BID;            // Write response ID (S2 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S2_BID;            // Write response ID (S2 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S2_BRESP;          // Write response (S2 drives this)
     logic                        S2_BVALID;         // Write response valid (S2 drives this)
     logic                        S2_BREADY;         // Write response ready (from master)
@@ -51,7 +51,7 @@ interface S2_interface(
     
     // ===== READ ADDRESS CHANNEL (AR) =====
     // S2 receives these signals from masters
-    logic [AXI_ID_WIDTH-1:0]     S2_ARID;           // Read address ID (from master)
+    logic [AXI_SID_WIDTH-1:0]     S2_ARID;           // Read address ID (from master)
     logic [AXI_ADDR_WIDTH-1:0]   S2_ARADDR;         // Read address (from master)
     logic [AXI_LEN_WIDTH-1:0]    S2_ARLEN;          // Burst length (0-15)
     logic                        S2_ARLOCK;         // Lock type
@@ -67,7 +67,7 @@ interface S2_interface(
     
     // ===== READ DATA CHANNEL (R) =====
     // S2 drives these signals to masters
-    logic [AXI_ID_WIDTH-1:0]     S2_RID;            // Read ID (S2 drives this)
+    logic [AXI_SID_WIDTH-1:0]     S2_RID;            // Read ID (S2 drives this)
     logic [AXI_DATA_WIDTH-1:0]   S2_RDATA;          // Read data (S2 drives this)
     logic [AXI_RESP_WIDTH-1:0]   S2_RRESP;          // Read response (S2 drives this)
     logic                        S2_RLAST;          // Read last (S2 drives this)
