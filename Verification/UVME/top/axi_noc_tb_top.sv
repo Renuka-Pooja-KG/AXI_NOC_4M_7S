@@ -12,6 +12,7 @@ module axi_noc_tb_top;
 
     // Import UVM package for global UVM functions
     import uvm_pkg::*;
+    `include "uvm_macros.svh"
 
     // Import axi_noc_pkg package
     import axi_noc_pkg::*;
@@ -641,6 +642,8 @@ module axi_noc_tb_top;
 
     // ===== UVM TEST START =====
     initial begin
+
+         $display("=== TESTBENCH STARTED ===");
          // Set virtual interfaces in config database for UVM components
         // Master interfaces - set full interface without modport specification
         uvm_config_db#(virtual M0_interface)::set(null, "*", "m0_vif", master0_if);

@@ -85,11 +85,11 @@ class axi_noc_env extends uvm_env;
         // Build virtual sequencer
          `uvm_info("AXI_NOC_ENV", "About to create virtual_sequencer", UVM_LOW)
         virtual_seqr = virtual_sequencer::type_id::create("virtual_seqr", this);
-         `uvm_info("AXI_NOC_ENV", "Virtual sequencer created successfully: %p", virtual_seqr, UVM_LOW)
+         `uvm_info("AXI_NOC_ENV", $sformatf("Virtual sequencer created successfully: %p", virtual_seqr), UVM_LOW)
 
          // ===== SET CONFIG IN BUILD PHASE =====
         // Set config database for virtual sequencer to find all agent sequencers
-        `uvm_info("AXI_NOC_ENV", "Setting M0_sequencer config: m0_agent.m0_sequencer = %p", m0_agent.m0_sequencer, UVM_LOW)
+        `uvm_info("AXI_NOC_ENV", $sformatf("Setting M0_sequencer config: m0_agent.m0_sequencer = %p", m0_agent.m0_sequencer), UVM_LOW)
         uvm_config_db#(M0_sequencer)::set(this, "virtual_seqr", "m0_sequencer", m0_agent.m0_sequencer);
         uvm_config_db#(M1_sequencer)::set(this, "virtual_seqr", "m1_sequencer", m1_agent.m1_sequencer);
         uvm_config_db#(M2_sequencer)::set(this, "virtual_seqr", "m2_sequencer", m2_agent.m2_sequencer);
