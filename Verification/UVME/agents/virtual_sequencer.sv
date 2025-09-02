@@ -38,12 +38,14 @@ class virtual_sequencer extends uvm_sequencer;
     //--- Build Phase -------//
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
+        `uvm_info("VIRTUAL_SEQ", "Virtual sequencer build_phase started", UVM_LOW)
+        `uvm_info("VIRTUAL_SEQ", "Virtual sequencer build_phase completed", UVM_LOW)
     endfunction
     
     //--- Connect Phase -------//
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        
+        `uvm_info("VIRTUAL_SEQ", "Virtual sequencer connect_phase started", UVM_LOW)
         // Get references to sub-sequencers from config database
         if (!uvm_config_db#(M0_sequencer)::get(this.get_parent(), "virtual_seqr", "m0_sequencer", M0_seqr))
             `uvm_fatal("VIRTUAL_SEQ", "M0_sequencer not found")

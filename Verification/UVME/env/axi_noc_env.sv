@@ -83,10 +83,13 @@ class axi_noc_env extends uvm_env;
         s6_agent = S6_agent::type_id::create("s6_agent", this);
         
         // Build virtual sequencer
+         `uvm_info("AXI_NOC_ENV", "About to create virtual_sequencer", UVM_LOW)
         virtual_seqr = virtual_sequencer::type_id::create("virtual_seqr", this);
-        
+         `uvm_info("AXI_NOC_ENV", "Virtual sequencer created successfully: %p", virtual_seqr, UVM_LOW)
+
          // ===== SET CONFIG IN BUILD PHASE =====
         // Set config database for virtual sequencer to find all agent sequencers
+        `uvm_info("AXI_NOC_ENV", "Setting M0_sequencer config: m0_agent.m0_sequencer = %p", m0_agent.m0_sequencer, UVM_LOW)
         uvm_config_db#(M0_sequencer)::set(this, "virtual_seqr", "m0_sequencer", m0_agent.m0_sequencer);
         uvm_config_db#(M1_sequencer)::set(this, "virtual_seqr", "m1_sequencer", m1_agent.m1_sequencer);
         uvm_config_db#(M2_sequencer)::set(this, "virtual_seqr", "m2_sequencer", m2_agent.m2_sequencer);
@@ -99,6 +102,8 @@ class axi_noc_env extends uvm_env;
         uvm_config_db#(S4_sequencer)::set(this, "virtual_seqr", "s4_sequencer", s4_agent.s4_sequencer);
         uvm_config_db#(S5_sequencer)::set(this, "virtual_seqr", "s5_sequencer", s5_agent.s5_sequencer);
         uvm_config_db#(S6_sequencer)::set(this, "virtual_seqr", "s6_sequencer", s6_agent.s6_sequencer);        
+
+        `uvm_info("AXI_NOC_ENV", "Environment built and all sequencers configured", UVM_LOW)
         
         // // Build coverage components
         // m0_coverage = axi_master_coverage::type_id::create("m0_coverage", this);
