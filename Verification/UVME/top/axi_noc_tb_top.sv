@@ -12,6 +12,9 @@ module axi_noc_tb_top;
 
     // Import UVM package for global UVM functions
     import uvm_pkg::*;
+
+    // Import axi_noc_pkg package
+    import axi_noc_pkg::*;
     
     // ===== CLOCK AND RESET GENERATION =====
     logic ACLK;

@@ -136,6 +136,20 @@ class axi_noc_env extends uvm_env;
         `uvm_info("AXI_NOC_ENV", "Environment running - monitoring all agents", UVM_LOW)
     endtask
     
+    // ===== END OF ELABORATION PHASE =====
+    function void end_of_elaboration_phase(uvm_phase phase);
+        super.end_of_elaboration_phase(phase);
+        
+        `uvm_info("AXI_NOC_ENV", "Environment elaboration completed", UVM_LOW)
+        `uvm_info("AXI_NOC_ENV", "All components built and connected", UVM_LOW)
+        
+        // Print UVM topology at end of elaboration for debugging
+        `uvm_info("AXI_NOC_ENV", "Printing UVM topology after elaboration:", UVM_LOW)
+        uvm_top.print_topology();
+        
+        `uvm_info("AXI_NOC_ENV", "Topology printed successfully", UVM_LOW)
+    endfunction
+    
     // ===== REPORT PHASE =====
     function void report_phase(uvm_phase phase);
         super.report_phase(phase);
