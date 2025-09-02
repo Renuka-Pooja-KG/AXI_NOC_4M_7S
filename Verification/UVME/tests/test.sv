@@ -24,6 +24,7 @@ class test extends uvm_test;
     //--- Constructor -------//
     function new(string name = "test", uvm_component parent = null);
         super.new(name, parent);
+        `uvm_info(get_type_name(), "TEST CONSTRUCTOR CALLED", UVM_LOW)
     endfunction
     
     //--- Build Phase -------//
