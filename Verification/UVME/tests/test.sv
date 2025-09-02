@@ -30,11 +30,15 @@ class test extends uvm_test;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         
+        `uvm_info(get_type_name(), "TEST BUILD PHASE STARTED", UVM_LOW)
+        
         // Create environment instance
         env_top = axi_noc_env::type_id::create("env_top", this);
+        `uvm_info(get_type_name(), "Environment created", UVM_LOW)
         
         // Create virtual sequence instance
         v_seq = axi_noc_virtual_seq::type_id::create("v_seq", this);
+        `uvm_info(get_type_name(), "Virtual sequence created", UVM_LOW)
         
         `uvm_info(get_type_name(), "Test build phase completed", UVM_LOW)
     endfunction

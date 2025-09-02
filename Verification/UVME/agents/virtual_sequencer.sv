@@ -78,7 +78,7 @@ class virtual_sequencer extends uvm_sequencer;
         //     `uvm_fatal("VIRTUAL_SEQ", "S5_sequencer not found")
             
         // if (!uvm_config_db#(S6_sequencer)::get(this.get_parent(), "virtual_seqr", "s6_sequencer", S6_seqr))
-            `uvm_fatal("VIRTUAL_SEQ", "S6_sequencer not found")
+        //    `uvm_fatal("VIRTUAL_SEQ", "S6_sequencer not found")
             
         `uvm_info("VIRTUAL_SEQ", "All sub-sequencers connected successfully", UVM_LOW)
     endfunction
