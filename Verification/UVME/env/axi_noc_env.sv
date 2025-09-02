@@ -66,7 +66,7 @@ class axi_noc_env extends uvm_env;
     // ===== BUILD PHASE =====
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        
+        `uvm_info("AXI_NOC_ENV", "Environment build_phase started", UVM_LOW)
         // Build master agents
         m0_agent = M0_agent::type_id::create("m0_agent", this);
         m1_agent = M1_agent::type_id::create("m1_agent", this);

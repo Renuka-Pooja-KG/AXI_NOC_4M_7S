@@ -27,7 +27,8 @@ class S0_agent extends uvm_agent;
     // ===== BUILD PHASE =====
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        
+
+        `uvm_info("S0_AGENT", "S0_agent build_phase started", UVM_LOW)
         // Build monitor (always built)
         s0_monitor = S0_monitor::type_id::create("s0_monitor", this);
         
@@ -46,7 +47,7 @@ class S0_agent extends uvm_agent;
         if (is_active == UVM_ACTIVE) begin
             s0_driver.seq_item_port.connect(s0_sequencer.seq_item_export);
         end
-        
+        `uvm_info("S0_AGENT", "S0_agent connect_phase completed", UVM_LOW)
         // Monitor analysis port connections will be handled at environment level
         // s0_monitor.item_collected_port.connect(...);
     endfunction
